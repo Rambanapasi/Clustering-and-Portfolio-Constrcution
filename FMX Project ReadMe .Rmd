@@ -1,0 +1,379 @@
+---
+title: "FMX Project"
+output: github_document
+---
+
+# Question
+
+- do technical factors, combined with fundamentals factors generate superior risk adjusted return if are combined into an investment portfolio. 
+
+# Goal 
+
+the goal of the this project would be to implement a portfolio that enhances diversification (by orthogonal risk source), generate above market-relative returns, and decrease risk.
+
+Enroute to achieving the main goal I need to deal with the following :
+-  investigate the different momentum measures and their efficacy in order for us to reach a reasonable conclusion on which measure is best for my clustering purposes. 
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+rm(list = ls()) # Clean your environment:
+gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
+require("pacman")
+p_load("tidyquant", "fmxdat", "tidyverse", "PerformanceAnalytics", "lubridate", "DEoptim", "data.table", "covFcatorModel", "gt", "factoextra")
+
+list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+```
+# Proposed Data & Methodology 
+
+- use a technique to cluster group of stock using similar techinical drivers and some fundamental drivers. 
+
+- perform a transformation on historical prices to obtain price derivatives such as momentum and volatility. These are 200D moving average, 12 month return (momentum ), 100D trailing SD. Fundamnetal data considered will be ROIC, EBIT and EV. 
+
+- pre process the data by applying a percentile scoring relative to the factors. 
+
+- Apply K-means (the base model, attractive because of its simplicity clustering to group stocks by quality, value and volatility.
+
+- Conduct a return and risk attribution to each clusters by back testing. Re-balancing quarterly, this would be my outsample testing
+
+- Filter each clusters stocks by the top 5 (this depends on the size of the factors) relative momentum values). 
+
+
+# Cleaning the data
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# load the daily stock data from the JSE, via yahoo finance
+ data  <- read_csv("data/JSE full list .csv")
+#
+ stks  <- read_csv("data/JSE full list .csv") %>% select(Ticker) %>% rename(tcks = Ticker) %>%
+    mutate(tcks = str_remove(tcks, "JSE:"),
+          tcks = paste0(tcks, ".JO")) %>% select(tcks) %>% distinct() %>% pull()
+ # for the sector analysis
+ cater <- data %>% rename(ticks = Ticker) %>%
+    mutate(ticks = str_remove(ticks, "JSE:"),
+          ticks = paste0(ticks, ".JO"))
+#
+   # environment to store data
+  e <- new.env()
+#
+ # get symbols from YF
+  getSymbols(stks, from="2000-01-01", env = e, show_col_types = FALSE)
+#
+# # # merge all closes
+  closing_prices <- do.call(merge, eapply(e, Ad))
+#
+#  # some cleaning
+  colnames(closing_prices) <- gsub(".Adjusted","",names(closing_prices))
+#
+  colnames(closing_prices) <-  gsub(".JO","",names(closing_prices))
+
+#
+#  # get the volume
+#
+#   # lets incluse a volume filter
+  VOLUMES <- do.call(merge, eapply(e, Vo))
+
+ # get the ADV for each stock and filter those that traded beyond the ADV to get those have been having a lot of interest
+
+  Volumes <- VOLUMES %>%
+   tbl2xts::xts_tbl() %>%
+   gather(ticks, vol, -date) %>%
+   mutate(ticks = str_remove(ticks, ".Volume")) %>%
+    mutate(ticks = str_remove(ticks, ".JO"))
+
+   JSE_data <- closing_prices %>%
+     tbl2xts::xts_tbl() %>%
+     gather(ticks, px, -date) %>%
+  left_join(., Volumes, by = c("ticks", "date")) %>%
+     mutate(ticks = paste0(ticks, ".JO")) %>%
+     left_join(., cater, "ticks")
+
+ranking.df <- read.csv("data/ranking_date.csv")
+   
+#  # compute the average 200 day volume from the current day and get the top 30
+
+ liquid_shares  <- JSE_data %>%
+   filter(date >= Sys.Date() - 200) %>%
+   group_by(ticks) %>%
+   summarise(average_volume = mean(vol, na.rm = TRUE)) %>%
+   filter(average_volume > 1500000) %>%
+   mutate(rank = rank(average_volume, na.last = "keep", ties.method = "min")) %>%
+   filter(rank %in% 1:30) %>%
+  arrange(desc(rank)) %>% select(ticks) %>% pull()
+ 
+ # fiter for the most liquid and go back ten years
+
+ clusteringdata <- JSE_data %>%
+   filter(date>= lubridate::ymd(20140101)) %>%  
+  rename(stock  = ticks) %>% 
+  filter(stock %in% liquid_shares) %>% # now we monthly numbers, just to get rid of some  noise 
+  mutate(YM = format(date, "%y %m")) %>% group_by(stock, YM) %>% 
+  filter(date == last(date))
+
+# lets create a filter for missing observations
+
+ observations_include  <- clusteringdata %>% 
+    group_by(stock) %>% 
+    summarise(N_noNA = sum(!is.na(px)) / length(unique(clusteringdata$date)) ) %>% 
+    filter(N_noNA > 0.9) %>% pull(stock) 
+
+ 
+clusteringdata <-  clusteringdata %>% 
+  filter(stock %in% observations_include) %>%
+  group_by(stock) %>% 
+  mutate(ret = px/lag(px)-1) %>%
+  ungroup()
+```
+# using PC analysis then clustering to get an idea of building a portfolio
+
+- in the write up mention the advantages from text about k means clustering, then from that mention how those can be applied to finance. 
+
+- explain the silhoute in the methodology, what k means tries to acheive and how, good clusters and bad clusters?
+
+- deriving meaning out of the clusters. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# lets do some analysis on the clustering data, clean it before we can use it for clustering
+
+# rolling_ret <- clusteringdata %>% select(-Company, -YM) %>% group_by(stock) %>% mutate(RollRets = RcppRoll::roll_prod(1 + ret, 12, fill = NA, 
+#     align = "right")^(12/12) - 1) %>% filter(!is.na(RollRets)) 
+# 
+# # lets look at the outliers via standardized scores to see if there are outliers from its base
+# 
+# std_score <- clusteringdata %>% select(-Company, -YM) %>% mutate(RollRets = RcppRoll::roll_prod(1 + ret, 12, fill = NA, 
+#     align = "right")^(12/12) - 1) %>% filter(!is.na(RollRets)) %>% group_by(stock) %>% mutate(Stdspred = (RollRets - mean(RollRets))/sd(RollRets))
+# 
+# 
+# # lets plot to see if theres anything to get worried about 
+# Rolling_data%>% 
+# ggplot() + 
+# geom_line(aes(date, RollSD, color = stock), alpha = 0.7, 
+#     size = 1.25) + 
+# labs(title = "Illustration of Rolling 6 Month Annualized Returns of Shares", 
+#     subtitle = "", x = "", y = "Rolling 6 Month Returns (Ann.)", 
+#     caption = "Note:\n .") + theme_fmx(title.size = ggpts(30), 
+#     subtitle.size = ggpts(5), caption.size = ggpts(25), CustomCaption = T) 
+# 
+# # everything looks ok, now lets generate rolling volatility graphs to find our varying vol measures
+# 
+# Rolling_data <- rolling_ret %>% mutate(RollSD = RcppRoll::roll_sd(1 + ret, 12, fill = NA, align = "right") * 
+#     sqrt(12)) %>% 
+# filter(!is.na(RollSD)) %>% 
+#   group_by(stock) %>% 
+#   filter(date == last(date)) %>% 
+#   select(date, stock,RollSD, RollRets)
+# now we have both rolling standard deviation and returns for a year, lets try to find out if grouping them into different cluster will form something
+
+# because im trying to cluster by momentum and volatility, lets get the rolling amounts in terms of volatility and returns 
+
+
+# this needs some tweaking, so lets reconfigure the data set for it to be used in the function
+names <- ranking.df %>% select(stock) 
+
+# dont mind the name for some, I was trying out another way to find a more consistent result
+
+Rolling_data <-  ranking.df %>% ungroup()
+
+try <- Rolling_data %>% 
+  select(-date, -stock) 
+
+ # Assigning row names 
+
+ rownames(try) <- as.character(names$stock)
+ 
+ try
+
+# visualize the silhoutte, this gives the highest value where the observations are not overlapping into other clusters
+a <- fviz_nbclust(try, kmeans, method = "silhouette")+
+theme_classic()
+
+a
+
+# take the optimum amount of clusters
+km.res <- kmeans(try, 6, nstart = 1000)
+
+# Define a palette with 7 colours
+custom_palette <- c("#2E9FDF", "#00AFBB", "#E7B800", "#FC4E07", "#FF5733", "#9A55FF", "#4CAF50", "#FFC300", "#D9534F")
+
+# visualize the clusters
+b <- fviz_cluster(
+  km.res, 
+  data = try,
+  palette = custom_palette,
+  ellipse.type = "euclid",
+  star.plot = TRUE,
+  repel = TRUE,
+  ggtheme = theme_minimal(), 
+  main = ""
+)
+
+b
+# create a dataset to merge with the original dataset
+
+cluster.merging <- cbind(names, cluster = km.res$cluster) %>% merge(., clusteringdata, "stock")
+
+```
+# Cluster perfromance characteristics  & Backtesting
+
+I will now look at cluster performance charcateristics, performance over different investmnet horizons, drawdowns using an equally weighted portfolio and a capped portfolio. 
+
+- rebalance quarterly (Wednesdays of Mar, Jun, Sep and Dec)
+- sector agnostic
+- no turnover over constraints 
+- use a market weighted capped index for our backtesting
+- with 4 clusters, silhouette score still high enough for good clusters and each clusters have over 10 stocks, enough for our use case. 
+
+## Caveats 
+
+we got 6 momentum and 12 month vol numbers to get the attribution. Its not really comparing apples to apples but its back testing to see how that group may has performance given our criteria. You can decide wheter its reasonable. 
+
+second, I continue to use daily returns.
+
+to get more out of this I will try to use a market cap index.
+
+
+```{r}
+# merge the cluster information to the original dataset 
+
+attribution_data <- cluster.merging 
+
+monthly_attribution <-
+attribution_data %>% rename(rtn = ret)
+
+months <- c("Mar", "Jun", "Sep", "Dec")
+
+# now, lets extract a cluster and check out its performance 
+
+rebalance_weights <- cluster_rebalancing_weights(monthly_attribution, months, "Wed")
+```
+
+
+```{r}
+df_Cons <- rebalance_weights 
+
+ W_Cap = 1
+
+Cap <-  df_Cons %>% 
+    # Split our df into groups (where the groups here are the rebalance dates:
+    group_split(YM, cluster) %>% 
+    
+    # Apply the function Proportional_Cap_Foo to each rebalancing date:
+    map_df(~Proportional_Cap_Foo(., W_Cap = W_Cap) ) %>% select(-YM)
+ 
+# use the Capped_df and monthly_attribution dfs to step through this function
+
+# create a list, in this list we select from cluster 1 to N, apply the function below which creates a portfolio, then combine this list into a single data frame for comparison 
+ 
+Cluster_Port <- list()
+
+# Loop over clusters
+for (cluster_num in unique(Cap$cluster)) {
+  # Subset Cap and monthly_attribution for the current cluster
+  Cap_cluster <- filter(Cap, cluster == cluster_num)
+  monthly_cluster <- filter(monthly_attribution, cluster == cluster_num)
+  
+  # Apply Cluster_Portfolio function
+  result <- Cluster_Portfolio(Cap_cluster, monthly_cluster, cluster_num)
+  
+  # Add the result to the list
+  Cluster_Port[[as.character(cluster_num)]] <- result
+}
+
+Portfolio <- Cluster_Port %>% reduce(inner_join, "date") %>% gather(Cluster, return, -date)
+
+# plot 
+Portfolio %>%
+  group_by(Cluster) %>%
+  mutate(Idx = cumprod(1 + return)) %>%
+  ggplot(aes(date, Idx, color = Cluster)) +
+  geom_line() +
+  labs(title = "Capped Cluster Return On Investment",
+       subtitle = "",
+       x = "",
+       y = "Cumulative Return") +
+  fmxdat::theme_fmx()
+```
+## Return Attribution
+
+Next I want to get some summary statistics for the portfolios. 
+
+- Annual vol 
+- Max DD
+- Gain to Pain 
+- Annualized Return 
+- Sharpe ratio
+```{r}
+# get some stats on the portfolios that you just constructed
+Ports <- Portfolio %>% tbl2xts::tbl_xts(cols_to_xts = return, spread_by = Cluster, Colnames_Exact = T)
+
+# now for the function to gather to give some stats on performance 
+
+BMxts <- getSymbols('^J203.JO', src = "yahoo", from = "2014-01-01", to = Sys.Date(), auto.assign = TRUE)
+
+BM <- Cl(getSymbols.yahoo('^J203.JO', auto.assign = FALSE)) %>% tbl2xts::xts_tbl() %>% rename(BM = J203.JO.Close) %>% 
+  mutate(rtn = BM /lag(BM)-1) %>% select(-BM) %>% mutate(YM = format(date, "%y %m")) %>% group_by(YM) %>% 
+  filter(date == last(date)) %>% tbl2xts::tbl_xts()
+
+BM[is.na(BM)] <- 0
+
+BMxts <- BM
+
+nrow(Ports)
+nrow(BMxts)
+
+Fundxts <- Ports
+
+Months_LookBack <- 10
+NA_Check <- 0.8
+
+# a function to get moments 
+
+
+Moments_Comp <- function(funds, BM, Months_LookBack, NA_Check){
+  
+library(PerformanceAnalytics)
+    
+  Moms <- 
+      bind_rows(
+        data.frame(Return.cumulative(Fundxts) ) %>% round(., 3),
+        data.frame(Return.annualized(Fundxts, scale = 12, geometric = T)) %>% round(., 3),
+        data.frame(PerformanceAnalytics::Return.annualized.excess(Fundxts, BMxts) ) %>% round(., 3),
+        data.frame(sd.annualized(Fundxts, scale = 12, geometric = T)) %>% round(., 3),
+        
+        data.frame(PerformanceAnalytics::AdjustedSharpeRatio(Fundxts) ) %>% round(., 3),
+        data.frame(PainIndex(Fundxts, scale = 12, geometric = T)) %>% round(., 3),
+        data.frame(AverageDrawdown(Fundxts, scale = 12)) %>% round(., 3),
+        
+         data.frame(TrackingError(Ra = Fundxts, Rb = BMxts, scale = 12)) %>% round(., 3), 
+         data.frame(PerformanceAnalytics::InformationRatio(Ra = Fundxts, Rb = BMxts)) %>% round(., 3),
+         data.frame(PerformanceAnalytics::CAPM.beta(Ra = Fundxts, Rb = BMxts, Rf = 0)) %>% round(., 3),
+         data.frame(PerformanceAnalytics::CAPM.beta.bull(Ra = Fundxts, Rb = BMxts, Rf = 0)) %>% round(., 3),
+         data.frame(PerformanceAnalytics::CAPM.beta.bear(Ra = Fundxts, Rb = BMxts, Rf = 0)) %>% round(., 3),
+         data.frame(PerformanceAnalytics::UpDownRatios(Ra = Fundxts, Rb = BMxts, method = "Percent", side = "Up")) %>% round(., 3),
+         data.frame(PerformanceAnalytics::CVaR(R = Fundxts, p = 0.05, method = "modified")) %>% round(., 3)
+        ) %>% 
+        
+        tibble::rownames_to_column("Info") %>%
+        mutate(Period = glue::glue("Last {Months_LookBack} Months"), Info = c("Cum Returns", "Returns (Ann.)", "Returns Excess (Ann.)", "SD (Ann.)", "Adj. Sharpe Ratio", "Pain Index", 
+                                                 "Avg DD", "Tracking Error", "Information Ratio", "Beta", "Beta Bull", "Beta Bear", "Up-Down Ratio", "Modified CVaR")) %>% 
+        relocate(Period, .before = Info) %>% as_tibble() 
+  
+  # This line replaces the `.` with a space.
+  # Note the forward slashes, as `.` there means everything, `\\.` means a full-stop
+  colnames(Moms) <- gsub("comp_rtn_", "Portfolio ", colnames(Moms))
+  
+  Moms
+  }
+  
+Moments_Comp(Ports, BMxts, 10)
+
+```
+# What I aim to improve
+
+I want to get some consistent results and maybe apply a methods of backtesting the signal. I will explore other clustering models that can give more consistent results and less ambiguity in the meaning of the clusters. 
+
+
+
+- I want to cluster stock based on R-square, derived from regressing returns to PCs and/or factors. 
+
+- Use the results to cluster stock based  R square to 

@@ -1,0 +1,355 @@
+Ticker,Company,Sector
+JSE:BHG,BHP Group Limited (JSE:BHG),Basic Materials
+JSE:ANH,Anheuser-Busch Inbev (JSE:ANH),Consumer Goods
+JSE:PRX,Prosus N.V. (JSE:PRX),Technology
+JSE:GLN,Glencore plc (JSE:GLN),Basic Materials
+JSE:BTI,British American Tobacco (JSE:BTI),Consumer Goods
+JSE:CFR,Compagnie Fin Richemont (JSE:CFR),Consumer Goods
+JSE:AGL,Anglo American plc (JSE:AGL),Basic Materials
+JSE:NPN,Naspers Limited - N (JSE:NPN),Technology
+JSE:FSR,Firstrand Limited (JSE:FSR),Financials
+JSE:SBK,Standard Bank Group (JSE:SBK),Financials
+JSE:GFI,Gold Fields Limited (JSE:GFI),Basic Materials
+JSE:CPI,Capitec Bank Holdings (JSE:CPI),Financials
+JSE:VOD,Vodacom Group Limited (JSE:VOD),Telecommunications
+JSE:AMS,Anglo American Platinum Ltd (JSE:AMS),Basic Materials
+JSE:KIO,Kumba Iron Ore (JSE:KIO),Basic Materials
+JSE:MTN,MTN Group Limited (JSE:MTN),Telecommunications
+JSE:S32,South32 Limited (JSE:S32),Basic Materials
+JSE:MNP,Mondi plc (JSE:MNP),Basic Materials
+JSE:ABG,Absa Group Limited (JSE:ABG),Financials
+JSE:ANG,Anglogold Ashanti (JSE:ANG),Basic Materials
+JSE:SLM,Sanlam Limited (JSE:SLM),Financials
+JSE:SHP,Shoprite Holdings Limited (JSE:SHP),Consumer Services
+JSE:BID,Bid Corporation Limited (JSE:BID),Consumer Services
+JSE:SOL,Sasol Limited (JSE:SOL),Basic Materials
+JSE:NED,Nedbank Group Limited (JSE:NED),Financials
+JSE:NHM,Northam Platinum Limited (JSE:NHM),Basic Materials
+JSE:DSY,Discovery Limited (JSE:DSY),Financials
+JSE:RNI,Reinet Investments S.C.A. (JSE:RNI),Financials
+JSE:INP,Investec plc (JSE:INP),Financials
+JSE:APN,Aspen Pharmacare Holdings Limited (JSE:APN),Health Care
+JSE:BVT,Bidvest Group (JSE:BVT),Industrials
+JSE:NRP,Nepi Rockcastle plc (JSE:NRP),Financials
+JSE:REM,Remgro Limited (JSE:REM),Financials
+JSE:HAR,Harmony Gold Mining Company (JSE:HAR),Basic Materials
+JSE:CLS,Clicks Group Limited (JSE:CLS),Consumer Services
+JSE:PPH,Pepkor Holdings Limited (JSE:PPH),Consumer Services
+JSE:IMP,Impala Platinum Holdings Limited (JSE:IMP),Basic Materials
+JSE:EXX,Exxaro Resources Limited (JSE:EXX),Basic Materials
+JSE:WHL,Woolworths Holdings Limited (JSE:WHL),Consumer Services
+JSE:OUT,OUTsurance Holdings Limited (JSE:OUT),Financials
+JSE:SSW,Sibanye Stillwater Limited (JSE:SSW),Basic Materials
+JSE:OMU,Old Mutual Limited (JSE:OMU),Financials
+JSE:TXT,Textainer Group Holdings (JSE:TXT),Industrials
+JSE:RMI,Rand Merchant Investment Holdings (JSE:RMI),Financials
+JSE:NPH,Northam Platinum Holdings Limited (JSE:NPH),Basic Materials
+JSE:ARI,African Rainbow Minerals (JSE:ARI),Basic Materials
+JSE:MRP,Mr Price Group (JSE:MRP),Consumer Services
+JSE:GRT,Growthpoint Properties Limited (JSE:GRT),Financials
+JSE:TFG,The Foschini Group (JSE:TFG),Consumer Services
+JSE:INL,Investec Limited (JSE:INL),Financials
+JSE:SNT,Santam Limited (JSE:SNT),Financials
+JSE:TBS,Tiger Brands Limited (JSE:TBS),Consumer Goods
+JSE:HMN,Hammerson plc (JSE:HMN),Financials
+JSE:BYI,Bytes Technology Group (JSE:BYI),Technology
+JSE:TRU,Truworths International Limited (JSE:TRU),Consumer Services
+JSE:QLT,Quilter plc (JSE:QLT),Financials
+JSE:MCG,MultiChoice Group (JSE:MCG),Consumer Services
+JSE:MTM,Momentum Metropolitan Holdings (JSE:MTM),Financials
+JSE:SRE,Sirius Real Estate (JSE:SRE),Financials
+JSE:LHC,Life Healthcare Group (JSE:LHC),Health Care
+JSE:AVI,AVI Limited (JSE:AVI),Consumer Goods
+JSE:N91,Ninety One plc (JSE:N91),Financials
+JSE:RDF,Redefine Properties Limited (JSE:RDF),Financials
+JSE:DCP,Dis-Chem Pharmacies Limited (JSE:DCP),Consumer Services
+JSE:CCO,Capital & Counties Properties plc (JSE:CCO),Financials
+JSE:SAP,Sappi Limited (JSE:SAP),Basic Materials
+JSE:SPP,Spar Group Limited (JSE:SPP),Consumer Services
+JSE:TGA,Thungela Resources Limited (JSE:TGA),Basic Materials
+JSE:KST,PSG Konsult Limited (JSE:KST),Financials
+JSE:NTC,Netcare Limited (JSE:NTC),Health Care
+JSE:HCI,Hosken Consolidated Investments Limited (JSE:HCI),Financials
+JSE:MTH,Motus Holdings Limited (JSE:MTH),Consumer Services
+JSE:FFA,Fortress REIT Limited - A (JSE:FFA),Financials
+JSE:KRO,Karooooo Ltd (JSE:KRO),Technology
+JSE:ITE,Italtile Limited (JSE:ITE),Consumer Services
+JSE:DRD,DRDGOLD Limited (JSE:DRD),Basic Materials
+JSE:RES,Resilient REIT Limited (JSE:RES),Financials
+JSE:APH,Alphamin Resources Corporation (JSE:APH),Basic Materials
+JSE:BAW,Barloworld Limited (JSE:BAW),Industrials
+JSE:VKE,Vukile Property Fund Limited (JSE:VKE),Financials
+JSE:ADH,ADvTECH Limited (JSE:ADH),Consumer Services
+JSE:TKG,Telkom SA Limited (JSE:TKG),Telecommunications
+JSE:TSG,Tsogo Sun Gaming (JSE:TSG),Consumer Services
+JSE:MSP,MAS Real Estate Inc (JSE:MSP),Financials
+JSE:NY1,Ninety One Limited (JSE:NY1),Financials
+JSE:GTC,Globe Trade Centre S.A. (JSE:GTC),Financials
+JSE:RLO,Reunert Limited (JSE:RLO),Industrials
+JSE:AFE,AECI Limited (JSE:AFE),Basic Materials
+JSE:PIK,Pick n Pay Stores Limited (JSE:PIK),Consumer Services
+JSE:LTE,Lighthouse Capital Limited (JSE:LTE),Financials
+JSE:CML,Coronation Fund Managers (JSE:CML),Financials
+JSE:SUI,Sun International Limited (JSE:SUI),Consumer Services
+JSE:HYP,Hyprop Investments Limited (JSE:HYP),Financials
+JSE:OMN,Omnia Holdings Limited (JSE:OMN),Basic Materials
+JSE:SPG,Super Group Limited (JSE:SPG),Industrials
+JSE:WBO,Wilson Bayly Holmes-Ovcon Limited (JSE:WBO),Industrials
+JSE:PAN,Pan African Resources plc (JSE:PAN),Basic Materials
+JSE:EQU,Equites Property Fund Limited (JSE:EQU),Financials
+JSE:AFT,Afrimat Limited (JSE:AFT),Industrials
+JSE:OCE,Oceana Group Limited (JSE:OCE),Consumer Goods
+JSE:AIP,Adcock Ingram Holdings (JSE:AIP),Health Care
+JSE:CVW,Castleview Property Fund Limited (JSE:CVW),Financials
+JSE:PMR,Premier Group Limited (JSE:PMR),Consumer Goods
+JSE:IPF,Investec Property Fund Limited (JSE:IPF),Financials
+JSE:DTC,Datatec Limited (JSE:DTC),Technology
+JSE:RCL,RCL Foods Limited (JSE:RCL),Consumer Goods
+JSE:AFH,Alexander Forbes Group Holdings Limited (JSE:AFH),Financials
+JSE:JSE,JSE Limited (JSE:JSE),Financials
+JSE:GND,Grindrod Limited (JSE:GND),Industrials
+JSE:FFB,Fortress REIT Limited - B (JSE:FFB),Financials
+JSE:ARL,Astral Foods Limited (JSE:ARL),Consumer Goods
+JSE:COH,Curro Holdings Limited (JSE:COH),Consumer Services
+JSE:AIL,African Rainbow Capital Investments (JSE:AIL),Financials
+JSE:KAP,KAP Limited (JSE:KAP),Industrials
+JSE:ATT,Attacq Limited (JSE:ATT),Financials
+JSE:SSS,Stor-Age Property REIT (JSE:SSS),Financials
+JSE:FBR,Famous Brands Limited (JSE:FBR),Consumer Services
+JSE:PPC,PPC Limited (JSE:PPC),Industrials
+JSE:SAC,SA Corporate Real Estate Fund Limited (JSE:SAC),Financials
+JSE:TCP,Transaction Capital Ltd (JSE:TCP),Financials
+JSE:HDC,Hudaco Industries Limited (JSE:HDC),Industrials
+JSE:RBX,Raubex Group Limited (JSE:RBX),Industrials
+JSE:MED,Middle East Diamond Resources Limited (JSE:MED),Basic Materials
+JSE:CAA,CA Sales Holdings Limited (JSE:CAA),Industrials
+JSE:THA,Tharisa plc (JSE:THA),Basic Materials
+JSE:EMI,Emira Property Fund Limited (JSE:EMI),Financials
+JSE:MPT,Mpact Limited (JSE:MPT),Industrials
+JSE:NT1,Net 1 UEPS Technologies Inc (JSE:NT1),Industrials
+JSE:DKR,Deutsche Konsum REIT-AG (JSE:DKR),Financials
+JSE:SDO,STADIO Holdings Limited (JSE:SDO),Consumer Services
+JSE:AEL,Allied Electronics Corporation (JSE:AEL),Technology
+JSE:CAT,Caxton & CTP Publishers & Printers Limited (JSE:CAT),Consumer Services
+JSE:CSB,Cashbuild Limited (JSE:CSB),Consumer Services
+JSE:GML,Gemfields Group Limited (JSE:GML),Basic Materials
+JSE:DIB,Dipula Income Fund Limited B (JSE:DIB),Financials
+JSE:GSH,Grindrod Shipping Holdings (JSE:GSH),Industrials
+JSE:JBL,Jubilee Metals Group Plc (JSE:JBL),Basic Materials
+JSE:CLI,Clientele Limited (JSE:CLI),Financials
+JSE:HET,Heriot REIT Limited (JSE:HET),Financials
+JSE:BLU,Blue Label Telecoms (JSE:BLU),Telecommunications
+JSE:RFG,RFG Holdings Limited (JSE:RFG),Consumer Goods
+JSE:EXP,Exemplar Reitail Limited (JSE:EXP),Financials
+JSE:MTA,Metair Investments Limited (JSE:MTA),Consumer Goods
+JSE:MRF,Merafe Resources Limited (JSE:MRF),Basic Materials
+JSE:CRP,Capital & Regional plc (JSE:CRP),Financials
+JSE:MIX,Mix Telematics Limited (JSE:MIX),Industrials
+JSE:SYG,Sygnia Limited (JSE:SYG),Financials
+JSE:CLH,City Lodge Hotels Limited (JSE:CLH),Consumer Services
+JSE:SHG,Sea Harvest Group Limited (JSE:SHG),Consumer Goods
+JSE:KAL,Kaap Agri Limited (JSE:KAL),Consumer Services
+JSE:ZED,Zeder Investments Limited (JSE:ZED),Financials
+JSE:SBP,Sabvest Capital Limited (JSE:SBP),Financials
+JSE:IVT,Invicta Holdings Limited (JSE:IVT),Industrials
+JSE:ACT,Afrocentric Investment Corp (JSE:ACT),Health Care
+JSE:SUR,Spur Corporation Limited (JSE:SUR),Consumer Services
+JSE:ZZD,Zeda Limited (JSE:ZZD),Consumer Goods
+JSE:AHB,Arrowhead Properties Limited B (JSE:AHB),Financials
+JSE:BAT,Brait PLC (JSE:BAT),Financials
+JSE:HIL,Homechoice International plc (JSE:HIL),Consumer Services
+JSE:OCT,Octodec Investments Limited (JSE:OCT),Financials
+JSE:BEL,Bell Equipment Limited (JSE:BEL),Industrials
+JSE:LEW,Lewis Group Limited (JSE:LEW),Consumer Services
+JSE:ACS,Acsion Limited (JSE:ACS),Financials
+JSE:TDH,Tradehold Limited (JSE:TDH),Financials
+JSE:LBR,Libstar Holdings Limited (JSE:LBR),Consumer Goods
+JSE:SCD,Schroder European Real Estate Investment Trust (JSE:SCD),Financials
+JSE:CMH,Combined Motor Holdings Limited (JSE:CMH),Consumer Services
+JSE:MTNZF,MTN Zakhele Futhi (JSE:MTNZF),Financials
+JSE:MDI,Master Drilling Group Limited (JSE:MDI),Industrials
+JSE:SEA,Spear Reit Limited (JSE:SEA),Financials
+JSE:UPL,Universal Partners Limited (JSE:UPL),Financials
+JSE:REN,Renergen Limited (JSE:REN),Oil & Gas
+JSE:YYLBEE,YeboYethu (RF) Limited (JSE:YYLBEE),Financials
+JSE:ENX,enX Group Limited (JSE:ENX),Industrials
+JSE:NVS,Novus Holdings Limited (JSE:NVS),Industrials
+JSE:SAR,Safari Investments RSA Limited (JSE:SAR),Financials
+JSE:CTA,Capital Appreciation Limited (JSE:CTA),Technology
+JSE:GPL,Grand Parade Investments Limited (JSE:GPL),Financials
+JSE:NPK,Nampak Limited (JSE:NPK),Industrials
+JSE:EPE,EPE Capital Partners Limited (JSE:EPE),Financials
+JSE:ACL,ArcelorMittal South Africa Limited (JSE:ACL),Basic Materials
+JSE:OAS,Oasis Crescent Property Fund (JSE:OAS),Financials
+JSE:EMN,E Media Holdings Limited - N Shares (JSE:EMN),Consumer Services
+JSE:TRE,Trencor Limited (JSE:TRE),Industrials
+JSE:MFL,Metrofile Holdings Limited (JSE:MFL),Industrials
+JSE:BWN,Balwin Properties Limited (JSE:BWN),Financials
+JSE:CHP,Choppies Enterprises Limited (JSE:CHP),Consumer Services
+JSE:ORN,Orion Minerals Limited (JSE:ORN),Basic Materials
+JSE:DRA,DRA Global Limited (JSE:DRA),Industrials
+JSE:BRN,Brimstone Investment Corporation - N Shares (JSE:BRN),Financials
+JSE:SNV,Santova Limited (JSE:SNV),Industrials
+JSE:OAO,Oando PLC (JSE:OAO),Oil & Gas
+JSE:MMP,Marshall Monteagle PLC (JSE:MMP),Industrials
+JSE:SOLBE1,Sasol Limited - BEE (JSE:SOLBE1),Basic Materials
+JSE:HLM,Hulamin Limited (JSE:HLM),Basic Materials
+JSE:APF,Accelerate Property Fund Ltd (JSE:APF),Financials
+JSE:HPR,Hosken Passenger Logistics and Rail Limited (JSE:HPR),Consumer Services
+JSE:DNB,Deneb Investments Limited (JSE:DNB),Financials
+JSE:TPC,Transpaco Limited (JSE:TPC),Industrials
+JSE:EOH,EOH Holdings (JSE:EOH),Technology
+JSE:AEG,Aveng Group Limited (JSE:AEG),Industrials
+JSE:SFN,Sasfin Holdings Limited (JSE:SFN),Financials
+JSE:QFH,Quantum Foods Holdings (JSE:QFH),Consumer Goods
+JSE:PPE,Purple Group Limited (JSE:PPE),Financials
+JSE:ART,Argent Industrial Limited (JSE:ART),Industrials
+JSE:YRK,York Timber Holdings Limited (JSE:YRK),Basic Materials
+JSE:TEX,Texton Property Fund Limited (JSE:TEX),Financials
+JSE:MCZ,MC Mining Limited (JSE:MCZ),Basic Materials
+JSE:PBG,PBT Group Limited (JSE:PBG),Technology
+JSE:RMH,RMB Holdings Limited (JSE:RMH),Financials
+JSE:WEZ,Wesizwe Platinum Limited (JSE:WEZ),Basic Materials
+JSE:MST,Mustek Limited (JSE:MST),Technology
+JSE:BCF,Bowler Metcalf Limited (JSE:BCF),Industrials
+JSE:NWL,Nu-World Holdings Limited (JSE:NWL),Consumer Goods
+JSE:AHA,Arrowhead Properties Limited A (JSE:AHA),Financials
+JSE:ARA,Astoria Investments Limited (JSE:ARA),Financials
+JSE:TON,Tongaat Hulett Limited (JSE:TON),Consumer Goods
+JSE:AEE,African Equity Empowerment Investments (JSE:AEE),Financials
+JSE:CKS,Crookes Brothers Limited (JSE:CKS),Consumer Goods
+JSE:TMT,Trematon Capital Investments Limited (JSE:TMT),Financials
+JSE:ASC,Ascendis Health Limited (JSE:ASC),Health Care
+JSE:TTO,Trustco Group Holdings Limited (JSE:TTO),Financials
+JSE:CGR,Calgro M3 Holdings Limited (JSE:CGR),Industrials
+JSE:ADR,Adcorp Holdings Limited (JSE:ADR),Industrials
+JSE:NRL,Newpark REIT Limited (JSE:NRL),Financials
+JSE:VUN,Vunani Limited (JSE:VUN),Financials
+JSE:SDL,Southern Palladium Limited (JSE:SDL),Basic Materials
+JSE:KP2,Kore Potash Plc (JSE:KP2),Basic Materials
+JSE:WSL,Wescoal Holdings Limited (JSE:WSL),Basic Materials
+JSE:HUG,Huge Group Limited (JSE:HUG),Telecommunications
+JSE:ISB,Insimbi Industrial Holdings Ltd (JSE:ISB),Basic Materials
+JSE:WKF,Workforce Holdings Limited (JSE:WKF),Industrials
+JSE:MUR,Murray & Roberts Holdings Limited (JSE:MUR),Industrials
+JSE:FGL,Finbond Group Limited (JSE:FGL),Financials
+JSE:AYO,AYO Tech Solutions (JSE:AYO),Technology
+JSE:RTN,Rex Trueform Group - N Shares (JSE:RTN),Consumer Services
+JSE:EMH,E Media Holdings Limited (JSE:EMH),Consumer Services
+JSE:AME,African Media Entertainment (JSE:AME),Consumer Services
+JSE:SSK,Stefanutti Stocks Holdings Limited (JSE:SSK),Industrials
+JSE:4SI,4Sight Holdings Limited (JSE:4SI),Financials
+JSE:LNF,London Finance & Investment Group Plc (JSE:LNF),Financials
+JSE:CGN,Cognition Holdings Limited (JSE:CGN),Technology
+JSE:SEB,Sebata Holdings Limited (JSE:SEB),Technology
+JSE:SEP,Sephaku Holdings Limited (JSE:SEP),Industrials
+JSE:ISA,ISA Holdings Limited (JSE:ISA),Technology
+JSE:BRT,Brimstone Investment Corporation (JSE:BRT),Financials
+JSE:SOH,South Ocean Holdings (JSE:SOH),Industrials
+JSE:TRL,Trellidor Holdings Limited (JSE:TRL),Industrials
+JSE:RHB,RH Bophelo Limited (JSE:RHB),Financials
+JSE:AON,African and Overseas Enterprises - N Shares (JSE:AON),Consumer Services
+JSE:DLT,Delta Property Fund Limited (JSE:DLT),Financials
+JSE:PMV,Primeserv Group Limited (JSE:PMV),Industrials
+JSE:CMO,Chrometco Limited (JSE:CMO),Basic Materials
+JSE:PPR,Putprop Limited (JSE:PPR),Financials
+JSE:BIK,Brikor Limited (JSE:BIK),Industrials
+JSE:EEL,Efora Energy Limited (JSE:EEL),Oil & Gas
+JSE:REB,Rebosis Property Fund (JSE:REB),Financials
+JSE:EPS,Eastern Platinum Limited (JSE:EPS),Basic Materials
+JSE:EUZ,Europa Metals Limited (JSE:EUZ),Basic Materials
+JSE:CAC,CAFCA Limited (JSE:CAC),Industrials
+JSE:REA,Rebosis Property Fund - A Shares (JSE:REA),Financials
+JSE:BSR,Basil Read Holdings Limited (JSE:BSR),Industrials
+JSE:ELI,Ellies Holdings Limited (JSE:ELI),Industrials
+JSE:LAB,Labat Africa Limited (JSE:LAB),Industrials
+JSE:RNG,Randgold And Exploration Company (JSE:RNG),Basic Materials
+JSE:TLM,TeleMasters Holdings Limited (JSE:TLM),Telecommunications
+JSE:RTO,Rex Trueform Group (JSE:RTO),Consumer Services
+JSE:KBO,Kibo Energy PLC (JSE:KBO),Basic Materials
+JSE:NCS,Nictus Limited (JSE:NCS),Consumer Services
+JSE:PSV,PSV Holdings Limited (JSE:PSV),Industrials
+JSE:CND,Conduit Capital Limited (JSE:CND),Financials
+JSE:ILE,Imbalie Beauty Limited (JSE:ILE),Consumer Goods
+JSE:AOO,African and Overseas Enterprises Limited (JSE:AOO),Consumer Services
+JSE:MRI,Mine Restoration Investments Limited (JSE:MRI),Industrials
+JSE:GLI,Go Life International Ltd (JSE:GLI),Health Care
+JSE:AHL,AH-Vest Limited (JSE:AHL),Consumer Goods
+JSE:ECS,Ecsponent Limited (JSE:ECS),Financials
+JSE:VIS,Visual International Holdings Limited (JSE:VIS),Financials
+JSE:ADW,African Dawn Capital (JSE:ADW),Financials
+JSE:PEM,Pembury Lifestyle Group (JSE:PEM),Consumer Services
+JSE:PHM,Phumelela Gaming And Leisure Limited (JSE:PHM),Consumer Services
+JSE:AVV,Alviva Holdings Limited (JSE:AVV),Technology
+JSE:PFB,Premier Fishing and Brands (JSE:PFB),Consumer Goods
+JSE:PSG,PSG Group Limited (JSE:PSG),Financials
+JSE:RAV,Raven Property Group Limited (JSE:RAV),Financials
+JSE:RPL,RDI REIT PLC (JSE:RPL),Financials
+JSE:ACE,Accentuate Limited (JSE:ACE),Industrials
+JSE:ADI,Adapt IT Holdings (JSE:ADI),Technology
+JSE:RSG,Resource Generation Limited (JSE:RSG),Basic Materials
+JSE:AVL,Advanced Health Limited (JSE:AVL),Health Care
+JSE:RDI,Rockwell Diamonds Incorporated (JSE:RDI),Basic Materials
+JSE:RBP,Royal Bafokeng Platinum Limited (JSE:RBP),Basic Materials
+JSE:AFX,African Oxygen Limited (JSE:AFX),Basic Materials
+JSE:ALH,Alaris Holdings Limited (JSE:ALH),Technology
+JSE:ACG,Anchor Group Limited (JSE:ACG),Financials
+JSE:SVB,SilverBridge Holdings Limited (JSE:SVB),Technology
+JSE:ARH,ARB Holdings Limited (JSE:ARH),Industrials
+JSE:ACZ,Arden Capital Limited (JSE:ACZ),Financials
+JSE:SPA,Spanjaard Limited (JSE:SPA),Basic Materials
+JSE:ALP,Atlantic Leaf Properties Limited (JSE:ALP),Financials
+JSE:SNH,Steinhoff International Holdings NV (JSE:SNH),Consumer Services
+JSE:SCP,Stellar Capital Partners Limited (JSE:SCP),Financials
+JSE:STP,Stenprop Limited (JSE:STP),Financials
+JSE:BAU,Bauba Resources Limited (JSE:BAU),Basic Materials
+JSE:TAS,Taste Holdings Limited (JSE:TAS),Consumer Services
+JSE:TBG,Tiso Blackstar Group SE (JSE:TBG),Consumer Services
+JSE:TCS,Total Client Services Limited (JSE:TCS),Technology
+JSE:TWR,Tower Property Fund Ltd (JSE:TWR),Financials
+JSE:BUC,Buffalo Coal Corporation (JSE:BUC),Basic Materials
+JSE:TPF,Transcend Residential Property Fund Limited (JSE:TPF),Financials
+JSE:CTK,Cartrack Holdings (JSE:CTK),Industrials
+JSE:TGO,Tsogo Sun Hotels (JSE:TGO),Consumer Services
+JSE:UCP,Unicorn Capital Partners Limited (JSE:UCP),Basic Materials
+JSE:UAT,Union Atlantic Minerals Limited (JSE:UAT),Basic Materials
+JSE:VLE,Value Group Limited (JSE:VLE),Industrials
+JSE:VVO,Vivo Energy plc (JSE:VVO),Consumer Services
+JSE:COM,Comair Limited (JSE:COM),Consumer Services
+JSE:WEA,WG Wearne Limited (JSE:WEA),Industrials
+JSE:CIL,Consolidated Infrastructure Group (JSE:CIL),Industrials
+JSE:CSG,CSG Holdings Limited (JSE:CSG),Industrials
+JSE:ZCL,Zarclear Holdings (JSE:ZCL),Financials
+JSE:DIA,Dipula Income Fund Limited A (JSE:DIA),Financials
+JSE:DGH,Distell Group Holdings (JSE:DGH),Consumer Goods
+JSE:EFG,Efficient Group Limited (JSE:EFG),Financials
+JSE:ELR,ELB Group Limited (JSE:ELR),Industrials
+JSE:EPP,EPP N.V. (JSE:EPP),Financials
+JSE:ESR,Esor Limited (JSE:ESR),Industrials
+JSE:ETO,Etion Limited (JSE:ETO),Technology
+JSE:FVT,Fairvest Property Holdings (JSE:FVT),Financials
+JSE:FSE,Firestone Energy Limited (JSE:FSE),Basic Materials
+JSE:FDP,Freedom Property Fund Limited (JSE:FDP),Financials
+JSE:GAI,Gaia Infrastructure Capital Limited (JSE:GAI),Financials
+JSE:GRF,Group Five Limited (JSE:GRF),Industrials
+JSE:HPB,Hospitality Property Fund - B (JSE:HPB),Financials
+JSE:HUL,Hulisani Limited (JSE:HUL),Financials
+JSE:HWA,Hwange Colliery Company Limited (JSE:HWA),Basic Materials
+JSE:IAP,Irongate Group (JSE:IAP),Financials
+JSE:IPL,Imperial Logistics Limited (JSE:IPL),Industrials
+JSE:IDQ,Indequity Group Limited (JSE:IDQ),Financials
+JSE:ILU,Indluplace Properties Limited (JSE:ILU),Financials
+JSE:JSC,Jasco Electronics Holdings (JSE:JSC),Technology
+JSE:KDV,Kaydav Group Limited (JSE:KDV),Industrials
+JSE:LBH,Liberty Holdings Limited (JSE:LBH),Financials
+JSE:L2D,Liberty Two Degrees Limited (JSE:L2D),Financials
+JSE:L4L,Long4Life Limited (JSE:L4L),Financials
+JSE:MSM,Massmart Holdings Limited (JSE:MSM),Consumer Services
+JSE:MZR,Mazor Group Limited (JSE:MZR),Industrials
+JSE:MEI,Mediclinic International plc (JSE:MEI),Health Care
+JSE:MLE,Mettle Investments Limited (JSE:MLE),Financials
+JSE:MNK,Montauk Holdings Limited (JSE:MNK),Oil & Gas
+JSE:NFP,New Frontier Properties Limited (JSE:NFP),Financials
+JSE:NUT,Nutritional Holdings Limited (JSE:NUT),Health Care
+JSE:NVE,Nvest Financial Holdings Limited (JSE:NVE),Financials
+JSE:OLG,Onelogix Group Limited (JSE:OLG),Industrials
