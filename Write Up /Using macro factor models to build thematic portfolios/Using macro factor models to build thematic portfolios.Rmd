@@ -274,9 +274,9 @@ For this study, we choose $K$ with the highest silhoutte index/value
 
 ## Portfolio Backtest
 
-The out-of-sample performance of cluster portfolios is compared to the benchmark, the JSE All Share Index. To manage risk exposure to a single asset or industry,  we use a cap  on each asset's allocation. Thus use a single company methodology similar to Standard & Poor Capping Methodology [@sp].
+The out-of-sample performance of cluster portfolios is compared to the benchmark, the JSE All Share Index. To manage risk exposure to a single asset or industry,  we use a cap  on each asset's allocation. Thus use a single company methodology similar to Standard & Poor Capping Methodology ^[see @sp for a breakdown of the process used to cap an index].
 In a single company capping methodology, no company in an index (cluster in our case) is
-allowed to breach a certain pre-determined weight as of each rebalancing period ^[we set the maximum weight to be that of an equally weight cluster]. Theoretically, this should preserve the within cluster diversification benefits and allow the portfolio value to either increase or decrease depending on stock performance during the quarter. We rebalance the portfolios once every three months, similar to the frequency of rebalancing conducted by the JSE on the JSE/FTSE indices, that is, re balance on the last daty of March, June, September and December. 
+allowed to breach a certain pre-determined weight as of each rebalancing period ^[The maximum set for each stock in each cluster is its equal weight for that cluster i.e if there were 10 stock in cluster 1, the maximum weight would be 10%]. Theoretically, this should preserve the within cluster diversification benefits and allow the portfolio value to either increase or decrease depending on stock performance during the quarter. We rebalance the portfolios once every three months, similar to the frequency of rebalancing conducted by the JSE on the JSE/FTSE indices, that is, re balance on the last daty of March, June, September and December. 
 
 \newpage
 
@@ -288,6 +288,8 @@ allowed to breach a certain pre-determined weight as of each rebalancing period 
 
 ::: {#refs}
 :::
+
+\newpage
 
 # Appendix
 
