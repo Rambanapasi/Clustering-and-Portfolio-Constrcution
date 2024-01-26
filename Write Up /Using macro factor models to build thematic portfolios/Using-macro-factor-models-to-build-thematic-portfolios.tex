@@ -362,55 +362,32 @@ results of the ranking are shown in Table \ref{tab1}
 
 We employ the K-means that partitions \(n\) observations into \(k\)
 clusters ???. The goal is to minimize the within cluster sum of squares
-or analytically:
-
-\(\underset{s}{\arg \min } \sum_{i=1}^k \sum_{x \in S_i}\left\|x-\mu_i\right\|^2\)
-
-where \(x\) are the observations, \(S=S_1, S_2, \ldots, S_k\) are the
-sets of observations, and \(\mu_i\) is the mean of the points in
-\(S_i\). To arrive at the optimum number of clusters, we utilize the
-most popular algorithm called the Lloyd's algorithm that is closely
-followed by Marvin (\protect\hyperlink{ref-marvin2015creating}{2015}),
-Bin (\protect\hyperlink{ref-bin2020k}{2020}) \& Xu, Xu \& Wunsch
+or analytically,
+\(\underset{s}{\arg \min } \sum_{i=1}^k \sum_{x \in S_i}\left\|x-\mu_i\right\|^2\)where
+\(x\) are the observations, \(S=S_1, S_2, \ldots, S_k\) are the sets of
+observations, and \(\mu_i\) is the mean of the points in \(S_i\). To
+arrive at the optimum number of clusters, we utilize the most popular
+algorithm called the Lloyd's algorithm that is closely followed by
+Marvin (\protect\hyperlink{ref-marvin2015creating}{2015}), Bin
+(\protect\hyperlink{ref-bin2020k}{2020}) \& Xu, Xu \& Wunsch
 (\protect\hyperlink{ref-xu2010clustering}{2010}).
 
-Analytically:
-
-Given a set of points
+Analytically, given a set of points
 \(\left\{x_1, \cdots x_n\right\}\left(x_i \in \mathbb{R}^m\right)\),
-
-\begin{itemize}
-\item
-  Initialize the K clusters with \(\left\{C_1, \cdots C_K\right\}\) with
-  centers
-  \(\left\{m_1, m_2, \cdots m_K\right\}\left(m_i \in \mathbb{R}^m\right)\).
-  The centres are picked using the silhoutte method discussed in
-  \ref{sil}
-\item
-  For all points \(x_i(i \in\{1, \cdots n\})\), find the centre that
-  closest based on a eucliean distance \(d\). Following this, assign
-  \(x_i\) to the cluster corresponding to the closest centre.
-\end{itemize}
-
-\(x_i \in C_j\) if
+Initialize the K clusters with \(\left\{C_1, \cdots C_K\right\}\) with
+centers.
+\(\left\{m_1, m_2, \cdots m_K\right\}\left(m_i \in \mathbb{R}^m\right)\).
+The centres are picked using the silhoutte method discussed in \ref{sil}
+For all points \(x_i(i \in\{1, \cdots n\})\), find the centre that
+closest based on a eucliean distance \(d\). Following this, assign
+\(x_i\) to the cluster corresponding to the closest
+centre.\(x_i \in C_j\) if
 \(d\left(x_i, m_j\right) \leq d\left(x_i, m_l\right) \quad(\forall l \in\{1, \cdots K\})(j \neq l)(\forall i \in\{1, \cdots n\})\).
-
-\begin{itemize}
-\tightlist
-\item
-  Recalculate the center for each cluster \(C_l(l \in\{1, \cdots K\})\).
-  The new cluster centres are the mean of the points in the same
-  cluster.
-\end{itemize}
-
-\(m_l=\frac{1}{\left|C_l\right|} \sum_{x_p \in C_l} x_p \quad(\forall l \in\{1, \cdots K\})\).
-
-\begin{itemize}
-\tightlist
-\item
-  Repeat processes two and three until no cluster has any change in
-  point assignment.
-\end{itemize}
+Recalculate the center for each cluster \(C_l(l \in\{1, \cdots K\})\).
+The new cluster centres are the mean of the points in the same
+cluster.\(m_l=\frac{1}{\left|C_l\right|} \sum_{x_p \in C_l} x_p \quad(\forall l \in\{1, \cdots K\})\).
+Repeat processes two and three until no cluster has any change in point
+assignment.
 
 \hypertarget{silhoutte-index}{%
 \subsection{\texorpdfstring{Silhoutte index
@@ -484,6 +461,10 @@ September and December.
 \hypertarget{results}{%
 \section{\texorpdfstring{Results
 \label{Results}}{Results }}\label{results}}
+
+\includegraphics{images/3_Cluster.png}
+\includegraphics{images/4_Cluster.png}
+\includegraphics{images/5_Cluster.png}
 
 \newpage
 
