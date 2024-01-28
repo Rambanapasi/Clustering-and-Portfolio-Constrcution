@@ -178,7 +178,7 @@
 
 \begin{frontmatter}  %
 
-\title{Guide to Using Partition Clustering to Construct Portfolios}
+\title{Navigating the Stock Market: A Guide to Smart Investing}
 
 % Set to FALSE if wanting to remove title (for submission)
 
@@ -196,6 +196,12 @@
 
 \cortext[cor]{Corresponding author: Gabriel Rambanapasi}
 
+\begin{abstract}
+\small{
+This paper investigates dividends return predictive signals, focusing on
+Dividend Yield (DY) and Dividend Growth (DG) signals, w
+}
+\end{abstract}
 
 \vspace{1cm}
 
@@ -240,20 +246,43 @@ K-Means\sep Clustering \sep Price Momentun \sep Volatility
 
 
 \hypertarget{introduction}{%
-\section{\texorpdfstring{Introduction
-\label{Introduction}}{Introduction }}\label{introduction}}
+\section{Introduction}\label{introduction}}
+
+Consider the prevailing market consensus that anticipates a specific
+direction for market conditions. For instance, in the current interest
+rate environment, the majority of practitioners believe that in 2024,
+the Federal Reserve will initiate interest rate cuts. This is expected
+to trigger a chain reaction in valuations across capital markets,
+affecting sectors and industries disproportionately. For portfolio
+managers, this underscores the importance of carefully scrutinizing
+different parts of the stock market to pinpoint companies that can
+enhance the risk/return profile of a portfolio. To identify potential
+out performers, we set out to use a combination of clustering using
+unsupervised machine learning in K-Means Cluserting and factor analysis
+which are price momentum and volatility. Essentially, we reduce the
+dimensions of our sample data, making it less challenging to uncover
+latent relationships in asset performance over various time periods.
 
 \begin{itemize}
-\tightlist
 \item
-  aim to test momentum via cumulative return
+  mention the different time periods that were tested, so when it works
+  and why it works. How it works needs a dive into the constituents
+  themselves.
 \item
-  use clusters to group high performers, low performers to each group.
-\item
-  build a portfolio, and check out returns.
-\item
-  compare the underlying thesis with what has happended
 \end{itemize}
+
+Initially, we assess performance by employing a simple look-back period
+to observe performance and risk over 3, 6, and 12 months. It becomes
+evident that, on average, factor portfolios perform well over short
+investment horizons. However, they exhibit significant risk levels
+compared to a market index. Subsequently, we conduct a rolling backtest
+to evaluate the robustness of the portfolios formed through our factor
+filter. Our findings suggest that, despite their elevated levels of risk
+attributed to the low number of stocks in each portfolio, risk-adjusted
+performance, as measured by the Sharpe Ratio, consistently outperforms.
+However, it is crucial to note that this strategy is effective over
+shorter investment horizons. As the investment horizon extends, the
+adverse effects of poor diversification become apparent.
 
 \hypertarget{clustering-and-appliactions-to-asset-management}{%
 \section{Clustering and Appliactions to Asset
@@ -318,7 +347,8 @@ ratios under performed those that used fundamental ratios. \newpage
 
 This section describes how we obtain the data set used in the study,
 details the clustering process and validating metrics employed, to
-obtain the results in \ref{Results}.
+obtain the results in \ref{Results}. For the methodology results, see
+Appendix
 
 \hypertarget{obtaining-and-prepariing-the-dataset}{%
 \subsection{Obtaining and prepariing the
@@ -345,31 +375,31 @@ return series to reflect corporate actions.
 The measures of similarity used in this study are volatility and price
 momentum. To cluster stock based on the two measures, we apply a
 percentile ranking criterion on stock scores during a time period. For
-price momentum, describes the causuality between relatively strong
-performance and high future return and vice versa. Ranking highly
+price momentum, describes the causality between relatively strong
+performance and high future return and vice-versa. Ranking highly
 implies that strong performers and thus higher returns than weak
 performers. This study defines cross sectional momentum as the trailing
 6 month cumulative return Jegadeesh \& Titman
 (\protect\hyperlink{ref-jegadeesh1993returns}{1993}). For volatility,
-using a 12 month lockback period compute the standard deviation. The
+using a 12 month lock back period compute the standard deviation. The
 results of the ranking are shown in Table \ref{tab1}
 
 \hypertarget{stocks-clustering}{%
 \subsection{Stocks clustering}\label{stocks-clustering}}
 
 \hypertarget{lloyds-algorithm}{%
-\subsection{Lloyd's algorithm}\label{lloyds-algorithm}}
+\subsubsection{Lloyd's algorithm}\label{lloyds-algorithm}}
 
 We employ the K-means that partitions \(n\) observations into \(k\)
-clusters ???. The goal is to minimize the within cluster sum of squares
-or analytically,
-\(\underset{s}{\arg \min } \sum_{i=1}^k \sum_{x \in S_i}\left\|x-\mu_i\right\|^2\)where
-\(x\) are the observations, \(S=S_1, S_2, \ldots, S_k\) are the sets of
-observations, and \(\mu_i\) is the mean of the points in \(S_i\). To
-arrive at the optimum number of clusters, we utilize the most popular
-algorithm called the Lloyd's algorithm that is closely followed by
-Marvin (\protect\hyperlink{ref-marvin2015creating}{2015}), Bin
-(\protect\hyperlink{ref-bin2020k}{2020}) \& Xu, Xu \& Wunsch
+clusters. The goal is to minimize the within cluster sum of squares or
+analytically,
+\(\underset{s}{\arg \min } \sum_{i=1}^k \sum_{x \in S_i}\left\|x-\mu_i\right\|^2\)
+where \(x\) are the observations, \(S=S_1, S_2, \ldots, S_k\) are the
+sets of observations, and \(\mu_i\) is the mean of the points in
+\(S_i\). To arrive at the optimum number of clusters, we utilize the
+most popular algorithm called the Lloyd's algorithm that is closely
+followed by Marvin (\protect\hyperlink{ref-marvin2015creating}{2015}),
+Bin (\protect\hyperlink{ref-bin2020k}{2020}) \& Xu, Xu \& Wunsch
 (\protect\hyperlink{ref-xu2010clustering}{2010}).
 
 Analytically, given a set of points
@@ -377,15 +407,17 @@ Analytically, given a set of points
 Initialize the K clusters with \(\left\{C_1, \cdots C_K\right\}\) with
 centers.
 \(\left\{m_1, m_2, \cdots m_K\right\}\left(m_i \in \mathbb{R}^m\right)\).
-The centres are picked using the silhoutte method discussed in \ref{sil}
-For all points \(x_i(i \in\{1, \cdots n\})\), find the centre that
-closest based on a eucliean distance \(d\). Following this, assign
-\(x_i\) to the cluster corresponding to the closest
-centre.\(x_i \in C_j\) if
+The centers are picked using the silhouette method discussed in
+\ref{sil} For all points \(x_i(i \in\{1, \cdots n\})\), find the center
+that closest based on a euclidean distance \(d\). Following this, assign
+\(x_i\) to the cluster corresponding to the closest centre. Then
+\(x_i \in C_j\) if
 \(d\left(x_i, m_j\right) \leq d\left(x_i, m_l\right) \quad(\forall l \in\{1, \cdots K\})(j \neq l)(\forall i \in\{1, \cdots n\})\).
 Recalculate the center for each cluster \(C_l(l \in\{1, \cdots K\})\).
-The new cluster centres are the mean of the points in the same
-cluster.\(m_l=\frac{1}{\left|C_l\right|} \sum_{x_p \in C_l} x_p \quad(\forall l \in\{1, \cdots K\})\).
+The new cluster centers are the mean of the points in the same cluster.
+
+\(m_l=\frac{1}{\left|C_l\right|} \sum_{x_p \in C_l} x_p \quad(\forall l \in\{1, \cdots K\})\).
+
 Repeat processes two and three until no cluster has any change in point
 assignment.
 
@@ -394,38 +426,31 @@ assignment.
 \label{sil}}{Silhoutte index }}\label{silhoutte-index}}
 
 To evaluate the goodness of fit of partitioning using K means clustering
-the silhoutte index is used. A summary that closely follows Rousseeuw
-(\protect\hyperlink{ref-rousseeuw1987silhouettes}{1987}), can be seen
-below:
-
+the silhoutte index is used
+(\protect\hyperlink{ref-rousseeuw1987silhouettes}{Rousseeuw, 1987}).
 Given \(n\) data points \(\left\{x_1, \cdots x_n\right\}\), a
 partitioning result of \(K\) cluster \(\left\{C_1, \cdots C_K\right\}\)
 and distance metric \(d\), for each \(x_i\) in cluster \(C_l\), define
 
 \(a\left(x_i\right)=\frac{1}{\left|C_l\right|-1} \sum_{\forall x_j \in C_l, i \neq j} d\left(x_i, x_j\right)\)
 
-where \(a(x_i)\) is the mean dissimilarity between \(x_i\) to all other
-points within the same cluster.
-
-For each point \(x_i\) in cluster \(C_l\), define
+\(a(x_i)\) is the mean dissimilarity between \(x_i\) to all other points
+within the same cluster.For each point \(x_i\) in cluster \(C_l\),
+define
 
 \(b\left(x_i\right)=\min _{\forall p \in\{1, \cdots K\}, p \neq l} \frac{1}{\left|C_p\right|} \sum d\left(x_i, x_j\right.)\)
 
 \(b(x_i)\) is the minimum dissimilarity between \(x_i\) and all points
-in some \(C_p\) which does not contain \(x_i\).
-
-For each point \(x_i\) in cluster \(C_l\), their silhoutte index is
-defined as
+in some \(C_p\) which does not contain \(x_i\). For each point \(x_i\)
+in cluster \(C_l\), their silhouette index is defined as
 
 \(s\left(x_i\right)= \begin{cases}1-\frac{a\left(x_i\right)}{b\left(x_i\right)} & \text { if } a\left(x_i\right)<b\left(x_i\right) \\ 0 & \text { if } a\left(x_i\right)=b\left(x_i\right) \\ \frac{b\left(x_i\right)}{a\left(x_i\right)}-1 & \text { if } a\left(x_i\right)>b\left(x_i\right)\end{cases}\)
 
-where \(s(x_i)\) ranges between \([-1, 1]\).
-
-For \(s(x_i)\) that approaches 1, it means that \(a(x_i)\) needs to be
-significantly smaller than \(b(x_i)\), implying that within-cluster mean
-dissimilarity is much less than the smallest between-cluster mean
-dissimilarity, and thus the model does a good job clustering similar
-points together.
+where \(s(x_i)\) ranges between \([-1, 1]\). For \(s(x_i)\) that
+approaches 1, it means that \(a(x_i)\) needs to be significantly smaller
+than \(b(x_i)\), implying that within-cluster mean dissimilarity is much
+less than the smallest between-cluster mean dissimilarity, and thus the
+model does a good job clustering similar points together.
 
 For the \(s(x_i)\) that approaches 0, \(a(x_i)\) needs to be
 significantly greater than \(b(x_i)\), implying that within-cluster mean
@@ -462,9 +487,31 @@ September and December.
 \section{\texorpdfstring{Results
 \label{Results}}{Results }}\label{results}}
 
-\includegraphics{images/3_Cluster.png}
-\includegraphics{images/4_Cluster.png}
-\includegraphics{images/5_Cluster.png}
+This section will present and analyze the clustering results of the
+K-means algorithms. All clusters formed and individual stock risk and
+return characteristics are examined. I constrcuted bespoked equally
+weighted portfolios then examine their performance against a benchmark.
+For illustrations and graphs of the clustering results, see Appendix 1.
+A description of the constructed portfolios can be found in Appendix 2
+and 3
+
+\hypertarget{clustering-results-of-stock-price-movement-dataset}{%
+\subsection{Clustering results of stock price movement
+dataset}\label{clustering-results-of-stock-price-movement-dataset}}
+
+For each of the K values, the K-means algorithm is ran 1000 times, and
+the average silhouette value for the clustering results is recorded. The
+result is shown in Figure 1 in Appendix 1. As is apparent in the gure, K
+= 4 yields the optimal silhouette value and K = 6 yields a local optima.
+Although a natural choice is K = 11, as S\&P Global divides all
+companies into 11 major sectors, this is not optimal since K = 11 has a
+relatively small average silhouette value.
+
+\hypertarget{clustering-result-of-k-6}{%
+\subsection{Clustering Result of K = 6}\label{clustering-result-of-k-6}}
+
+\hypertarget{cluserting-result-of-k-9}{%
+\subsection{Cluserting Result of K = 9}\label{cluserting-result-of-k-9}}
 
 \newpage
 
@@ -562,6 +609,20 @@ ABG & 26.67 & 21.67 \\
 \caption{Clustering Similarity Measures\label{tab1}} 
 \end{longtable}
 \endgroup
+
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/silhouette} \hfill{}
+
+\caption{ Silhoutte Indexes for Clusters \label{fig1}}\label{fig:unnamed-chunk-2}
+\end{figure}
+
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/clusters_image} \hfill{}
+
+\caption{ Clusters Results from Highest Silhoutte \label{fig2}}\label{fig:unnamed-chunk-3}
+\end{figure}
 
 \hypertarget{appendix-b}{%
 \subsection{Appendix B}\label{appendix-b}}
