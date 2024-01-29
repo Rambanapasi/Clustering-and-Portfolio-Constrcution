@@ -251,42 +251,49 @@ K-Means\sep Clustering \sep Price Momentun \sep Volatility
 Consider the prevailing market consensus that anticipates a specific
 direction for market conditions. For instance, in the current interest
 rate environment, the majority of practitioners believe that in 2024,
-the Federal Reserve will initiate interest rate cuts. This is expected
-to trigger a chain reaction in valuations across capital markets,
-affecting sectors and industries disproportionately. For portfolio
-managers, this underscores the importance of carefully scrutinizing
-different parts of the stock market to pinpoint companies that can
-enhance the risk/return profile of a portfolio. To identify potential
-out performers, we set out to use a combination of clustering using
-unsupervised machine learning in K-Means Cluserting and factor analysis
-which are price momentum and volatility. Essentially, we reduce the
-dimensions of our sample data, making it less challenging to uncover
-latent relationships in asset performance over various time periods.
+the Federal Reserve will initiate interest rate cuts. This could trigger
+a chain reaction in valuations across capital markets, affecting sectors
+and industries disproportionately. For investors, this underscores the
+importance of carefully scrutinizing different parts of the stock market
+to pinpoint companies that can enhance the risk/return profile of a
+portfolio. We set out to employ a combination of K-Means clustering and
+technical factors. Essentially, we reduce the dimensions of our sample
+data, to create ``cluster portfolios'' making it less challenging to
+uncover latent relationships in asset performance and group
+characteristics.
 
-\begin{itemize}
-\item
-  mention the different time periods that were tested, so when it works
-  and why it works. How it works needs a dive into the constituents
-  themselves.
-\item
-\end{itemize}
+Our initial assessment involves the utilization of a simple look-back
+period to observe performance and risk over 3, 6, and 12 months. This
+analysis reveals that, on average, cluster portfolios exhibit strong
+performance over short investment horizons. However, they also display
+significant risk levels when compared to a market index. To further
+evaluate the robustness of the portfolios formed through our factor
+filter, we conduct a rolling backtest. The findings suggest that,
+despite the elevated levels of risk attributed to the low number of
+stocks in each portfolio, risk-adjusted performance, as measured by the
+Sharpe Ratio (SR), returns strong positive performance over short time
+horizons. It is noteworthy that this strategy demonstrates effectiveness
+over shorter investment horizons. However, as the investment horizon
+extends, the superior risk adjsuted return flatuates and diminishes.
 
-Initially, we assess performance by employing a simple look-back period
-to observe performance and risk over 3, 6, and 12 months. It becomes
-evident that, on average, factor portfolios perform well over short
-investment horizons. However, they exhibit significant risk levels
-compared to a market index. Subsequently, we conduct a rolling backtest
-to evaluate the robustness of the portfolios formed through our factor
-filter. Our findings suggest that, despite their elevated levels of risk
-attributed to the low number of stocks in each portfolio, risk-adjusted
-performance, as measured by the Sharpe Ratio, consistently outperforms.
-However, it is crucial to note that this strategy is effective over
-shorter investment horizons. As the investment horizon extends, the
-adverse effects of poor diversification become apparent.
+This integrated approach of clustering and factor analysis provides a
+valuable toolkit for portfolio managers seeking to identify potential
+out performers admidst anticipated market shifts. The focus on reducing
+the complexity of the data allows for a more nuanced understanding of
+asset performance, with the potential for enhanced risk-adjusted returns
+in the short term. Nevertheless, the strategy's limitations in the
+context of underscore the importance of continual refinement and
+adaptation to evolving market conditions.
+
+The next section \ref{lit} offers a brief discription of the various
+unsupervised machine learning algorithms. Section \ref{meth} details the
+methodology and data used along with its preparation procedure to be
+utilized by the K means clustering algorithm. Section \ref{Results}
+discusses the results and sectiom \ref{con} offers the conclusion.
 
 \hypertarget{clustering-and-appliactions-to-asset-management}{%
-\section{Clustering and Appliactions to Asset
-Management}\label{clustering-and-appliactions-to-asset-management}}
+\section{\texorpdfstring{Clustering and Appliactions to Asset Management
+\label{lit}}{Clustering and Appliactions to Asset Management }}\label{clustering-and-appliactions-to-asset-management}}
 
 Unsupervised machine learning is a type of machine learning that
 searches for patterns in datasets with no pre-existing labels and a
@@ -343,26 +350,25 @@ study, compared to the S\&P 500, portfolios constructed using market
 ratios under performed those that used fundamental ratios. \newpage
 
 \hypertarget{data-and-methodology}{%
-\section{Data and Methodology}\label{data-and-methodology}}
+\section{\texorpdfstring{Data and Methodology
+\label{meth}}{Data and Methodology }}\label{data-and-methodology}}
 
 This section describes how we obtain the data set used in the study,
 details the clustering process and validating metrics employed, to
 obtain the results in \ref{Results}. For the methodology results, see
-Appendix
+Appendix \ref{app1} and \ref{app2}.
 
 \hypertarget{obtaining-and-prepariing-the-dataset}{%
 \subsection{Obtaining and prepariing the
 dataset}\label{obtaining-and-prepariing-the-dataset}}
 
 The data employed in this paper is based on the constituent list of the
-Johannesburg All Share Index (ALSI) from January 1, 2000 to January 15
-2024, which contains the list of the 164 companies with the highest
-market value and liquidity. The historical price and volume data is
-retrieved from Yahoo Finance and fundamental data from Bloomberg. From
-historical price data obtained from Yahoo Finance, we filter stock that
-have trading volume that exceed 1 000 000 shares traded per year and
-exclude stock that have less than 90 percent of observations in the
-historical price dataset.
+Johannesburg All Share Index (ALSI) from January 1, 2014 to January 29
+2024. The historical price and volume data is retrieved from Yahoo
+Finance. From historical price data obtained from Yahoo Finance, we
+filter stock that have trading volume that exceed 1 000 000 shares
+traded per year and exclude stock that have less than 90 percent of
+observations in the historical price dataset.
 
 To avoid large oscillations in the data, we transformed the price series
 to include end of month data points thus returns calculations are based
@@ -379,8 +385,9 @@ price momentum, describes the causality between relatively strong
 performance and high future return and vice-versa. Ranking highly
 implies that strong performers and thus higher returns than weak
 performers. This study defines cross sectional momentum as the trailing
-6 month cumulative return Jegadeesh \& Titman
-(\protect\hyperlink{ref-jegadeesh1993returns}{1993}). For volatility,
+12 month cumulative return Jegadeesh \& Titman
+(\protect\hyperlink{ref-jegadeesh1993returns}{1993}), a modication to
+capture some longer term effects in the return series. For volatility,
 using a 12 month lock back period compute the standard deviation. The
 results of the ranking are shown in Table \ref{tab1}
 
@@ -565,11 +572,12 @@ returns ranging from 30\% to 57\%, followed by 8.2\% to 10.8\% in the
 medium term (5 years from table \ref{tab9}, and 4.8\% to 5.6\% over the
 ultra-long term (10 years from table \ref{tab15}).
 
-Turning our attention to tracking error, a similar pattern emerges. Over
-the ultra-short term, tracking errors range from 1.8\% to 7.9\%,
-followed by 10.2\% to 10.9\% in the medium term, and 9.9\% to 11.6\% in
-the long term. This highlights the varying degrees of risk associated
-with the clusters across different investment horizons.
+We notice consistency once we study the tracking error. Over the short
+term, tracking errors range from 1.8\% to 7.9\%, followed by 10.2\% to
+10.9\% in the medium term, and 9.9\% to 11.6\% in the long term. This
+highlights the varying degrees of risk associated with the clusters
+across different investment horizons. However, this tracking error
+largely remains in tight ranges through the investment horizons.
 
 Examining risk-adjusted metrics, we observe that clusters achieve a high
 Sharpe Ratio (SR) of 2.3 in the short term. As the investment horizon
@@ -578,14 +586,47 @@ while the clusters may exhibit lower risk-adjusted returns over longer
 periods, they continue to outperform in terms of risk efficiency in the
 shorter term.
 
-In analyzing drawdowns, Cluster 1 displays the least drawdowns and
-exhibits swift recovery, particularly in very short investment horizons.
-On the other hand, Cluster 3 consistently experiences a more moderate
-level of drawdowns and recovery rates. Notably, Clusters 1, 2, and 4
-undergo a doubling of drawdowns from year 6 to year 7. However, over the
-long term, all clusters experience a comparable level of drawdowns, with
-Cluster 4 showcasing the most protracted recovery period from its down
-levels. \newpage
+Lastly, Cluster 1 displays the least drawdowns and exhibits quick
+recovery to previous from its maximum drawdown, particularly in very
+short investment horizons. On the other hand, Cluster 3 consistently
+experiences a more moderate level of drawdowns and recovery rates.
+Notably, Clusters 1, 2, and 4 undergo a doubling of drawdowns from year
+6 to year 7. However, over the long term, all clusters experience a
+comparable level of drawdowns, with Cluster 4 showcasing the most
+protracted recovery period from its down levels.
+
+\hypertarget{conclusion}{%
+\section{\texorpdfstring{Conclusion
+\label{con}}{Conclusion }}\label{conclusion}}
+
+Our objective was to develop a methodology utilizing factors with
+theoretical foundations to unveil latent relationships among stocks
+and/or sectors through the application of the K-means algorithm.
+Additionally, we delved into return and risk metrics from a
+retrospective standpoint, constructing a rolling backtest to assess the
+robustness of the clustering results.
+
+The obtained results indicate that cluster portfolios not only provide
+positive excess returns but also demonstrate consistency in risk
+relative to the benchmark. Over short periods, these portfolios generate
+above-average risk-adjusted returns, albeit with the exception of the
+lone high value observed in Cluster 1 over a one-year investment holding
+period. A nuanced examination of the formed clusters reveals that a
+single industry can make up an entire cluster, while a mix of industries
+can compose another. This finding could be interpreted in various ways;
+on one hand, it may suggest robust intra-sector relationships, allowing
+for improved risk modeling. On the other hand, diverse clusters could
+imply greater opportunities for sectoral rotation, depending on investor
+capital expectations.
+
+In conclusion, to enhance the comprehensiveness of this study, the
+inclusion of additional factors, particularly fundamental ones, in our
+K-means clustering framework could be considered. Furthermore, testing
+various partition algorithms for their ability to form clusters with
+high orthogonal risk drivers would contribute to a more thorough
+analysis.
+
+\newpage
 
 \hypertarget{references}{%
 \section{References}\label{references}}

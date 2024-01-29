@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.24)  30 JAN 2024 00:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.24)  30 JAN 2024 01:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -751,75 +751,72 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 221.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 221.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 268.
-(/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [1
+[1
 
 
-{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [2] [3] [4{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
-<images/silhouette.png, id=138, 401.5pt x 200.75pt>
+{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [2] [3] [4{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+<images/silhouette.png, id=146, 401.5pt x 200.75pt>
 File: images/silhouette.png Graphic file (type png)
 <use images/silhouette.png>
-Package pdftex.def Info: images/silhouette.png  used on input line 466.
+Package pdftex.def Info: images/silhouette.png  used on input line 473.
 (pdftex.def)             Requested size: 401.82101pt x 200.92409pt.
 [5]
-<images/clusters_image.png, id=148, 401.5pt x 200.75pt>
+<images/clusters_image.png, id=156, 401.5pt x 200.75pt>
 File: images/clusters_image.png Graphic file (type png)
 <use images/clusters_image.png>
-Package pdftex.def Info: images/clusters_image.png  used on input line 473.
+Package pdftex.def Info: images/clusters_image.png  used on input line 480.
 (pdftex.def)             Requested size: 401.82101pt x 200.92409pt.
-[6 <./images/silhouette.png> <./images/clusters_image.png>] [7] [8] [9] [10] [11]
-<images/returnplots_1.png, id=212, 401.5pt x 250.9375pt>
+[6 <./images/silhouette.png> <./images/clusters_image.png>] [7] [8] [9] [10] [11] [12]
+<images/returnplots_1.png, id=226, 401.5pt x 250.9375pt>
 File: images/returnplots_1.png Graphic file (type png)
 <use images/returnplots_1.png>
-Package pdftex.def Info: images/returnplots_1.png  used on input line 704.
+Package pdftex.def Info: images/returnplots_1.png  used on input line 745.
 (pdftex.def)             Requested size: 401.82101pt x 251.15512pt.
-<images/returnplots_2.png, id=213, 401.5pt x 250.9375pt>
+<images/returnplots_2.png, id=227, 401.5pt x 250.9375pt>
 File: images/returnplots_2.png Graphic file (type png)
 <use images/returnplots_2.png>
-Package pdftex.def Info: images/returnplots_2.png  used on input line 710.
+Package pdftex.def Info: images/returnplots_2.png  used on input line 751.
 (pdftex.def)             Requested size: 401.82101pt x 251.15512pt.
-<images/returnplots_4.png, id=214, 401.5pt x 250.9375pt>
+<images/returnplots_4.png, id=228, 401.5pt x 250.9375pt>
 File: images/returnplots_4.png Graphic file (type png)
 <use images/returnplots_4.png>
-Package pdftex.def Info: images/returnplots_4.png  used on input line 716.
+Package pdftex.def Info: images/returnplots_4.png  used on input line 757.
 (pdftex.def)             Requested size: 401.82101pt x 251.15512pt.
-<images/returnplots_3.png, id=215, 401.5pt x 250.9375pt>
+<images/returnplots_3.png, id=229, 401.5pt x 250.9375pt>
 File: images/returnplots_3.png Graphic file (type png)
 <use images/returnplots_3.png>
-Package pdftex.def Info: images/returnplots_3.png  used on input line 722.
+Package pdftex.def Info: images/returnplots_3.png  used on input line 763.
 (pdftex.def)             Requested size: 401.82101pt x 251.15512pt.
-[12 <./images/returnplots_1.png> <./images/returnplots_2.png>]
-<images/volplots_1.png, id=225, 401.5pt x 250.9375pt>
+[13 <./images/returnplots_1.png> <./images/returnplots_2.png>]
+<images/volplots_1.png, id=240, 401.5pt x 250.9375pt>
 File: images/volplots_1.png Graphic file (type png)
 <use images/volplots_1.png>
-Package pdftex.def Info: images/volplots_1.png  used on input line 729.
+Package pdftex.def Info: images/volplots_1.png  used on input line 770.
 (pdftex.def)             Requested size: 401.82101pt x 251.15512pt.
-<images/volplots_2.png, id=226, 401.5pt x 250.9375pt>
+<images/volplots_2.png, id=241, 401.5pt x 250.9375pt>
 File: images/volplots_2.png Graphic file (type png)
 <use images/volplots_2.png>
-Package pdftex.def Info: images/volplots_2.png  used on input line 735.
+Package pdftex.def Info: images/volplots_2.png  used on input line 776.
 (pdftex.def)             Requested size: 401.82101pt x 251.15512pt.
-[13 <./images/returnplots_4.png> <./images/returnplots_3.png>]
-<images/volplots_3.png, id=236, 401.5pt x 250.9375pt>
+[14 <./images/returnplots_4.png> <./images/returnplots_3.png>]
+<images/volplots_3.png, id=250, 401.5pt x 250.9375pt>
 File: images/volplots_3.png Graphic file (type png)
 <use images/volplots_3.png>
-Package pdftex.def Info: images/volplots_3.png  used on input line 741.
+Package pdftex.def Info: images/volplots_3.png  used on input line 782.
 (pdftex.def)             Requested size: 401.82101pt x 251.15512pt.
-<images/volplots_4.png, id=237, 401.5pt x 250.9375pt>
+<images/volplots_4.png, id=251, 401.5pt x 250.9375pt>
 File: images/volplots_4.png Graphic file (type png)
 <use images/volplots_4.png>
-Package pdftex.def Info: images/volplots_4.png  used on input line 747.
+Package pdftex.def Info: images/volplots_4.png  used on input line 788.
 (pdftex.def)             Requested size: 401.82101pt x 251.15512pt.
-[14 <./images/volplots_1.png> <./images/volplots_2.png>] [15 <./images/volplots_3.png> <./images/volplots_4.png>]
+[15 <./images/volplots_1.png> <./images/volplots_2.png>] [16 <./images/volplots_3.png> <./images/volplots_4.png>]
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.770 \end{longtable}
-                      [16] [17] [18]
+l.811 \end{longtable}
+                      [17] [18] [19]
 No file Using-macro-factor-models-to-build-thematic-portfolios.bbl.
-[19] (./Using-macro-factor-models-to-build-thematic-portfolios.aux)
+[20] (./Using-macro-factor-models-to-build-thematic-portfolios.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -828,21 +825,21 @@ L3 programming layer <2024-01-22>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `Using-macro-factor-models-to-build-thematic-portfolios.out' has not changed.
-(rerunfilecheck)             Checksum: 9142BFDF6E316A04B79F1FCBC36426B5;2619.
+(rerunfilecheck)             Checksum: 92521D6AA1D8A8C511F74ADCC07BD20E;2737.
  ) 
 Here is how much of TeX's memory you used:
- 18322 strings out of 476188
- 340522 string characters out of 5793935
+ 18293 strings out of 476188
+ 339596 string characters out of 5793935
  1956975 words of memory out of 5000000
- 39921 multiletter control sequences out of 15000+600000
- 613173 words of font info for 76 fonts, out of 8000000 for 9000
+ 39894 multiletter control sequences out of 15000+600000
+ 612808 words of font info for 75 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,11n,79p,591b,1019s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></Users/gabrielrambanapasi/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Using-macro-factor-models-to-build-thematic-portfolios.pdf (19 pages, 604359 bytes).
+Output written on Using-macro-factor-models-to-build-thematic-portfolios.pdf (20 pages, 606477 bytes).
 PDF statistics:
- 392 PDF objects out of 1000 (max. 8388607)
- 308 compressed objects within 4 object streams
- 92 named destinations out of 1000 (max. 500000)
- 187 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 403 PDF objects out of 1000 (max. 8388607)
+ 319 compressed objects within 4 object streams
+ 95 named destinations out of 1000 (max. 500000)
+ 195 words of extra memory for PDF output out of 10000 (max. 10000000)
 
