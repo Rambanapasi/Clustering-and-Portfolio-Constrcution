@@ -236,31 +236,41 @@ greater than $b(x_i)$, implying that within-cluster mean dissimilarity
 is much greater than the smallest between- cluster mean dissimilarity,
 and thus the model does a poor job clustering similar points together.
 
-For this study, we choose $K$ with the highest silhoutte index/value
+For this study, we choose $K$ with the highest silhoutte index/value in Figure\ref{fig1} and gives the clusters in Figure \ref{fig2}
+```{r, fig.align='left', fig.cap=" Silhoutte Indexes for Clusters \\label{fig1}", fig.ext='png', fig.height=2, fig.width=4}
+knitr::include_graphics("images/silhouette.png")
+```
 
-## Portfolio Backtest
+```{r, fig.align='left', fig.cap=" Clusters Results from Highest Silhoutte \\label{fig2}", fig.ext='png', fig.height=2, fig.width=4}
+knitr::include_graphics("images/clusters_image.png")
+```
+## Portfolio Backtest \label{back}
 
 The out-of-sample performance of cluster portfolios is compared to the benchmark, the JSE All Share Index. To manage risk exposure to a single asset or industry,  we use a cap  on each asset's allocation. Thus use a single company methodology similar to Standard & Poor Capping Methodology ^[see @sp for a breakdown of the process used to cap an index]. In a single company capping methodology, no company in an index (cluster in our case) is allowed to breach a certain pre-determined weight as of each rebalancing period ^[The maximum set for each stock in each cluster is its equal weight for that cluster i.e if there were 10 stock in cluster 1, the maximum weight would be 10%]. Theoretically, this should preserve the within cluster diversification benefits and allow the portfolio value to either increase or decrease depending on stock performance during the quarter. We rebalance the portfolios once every three months, similar to the frequency of rebalancing conducted by the JSE on the JSE/FTSE indices, that is, re balance on the last daty of March, June, September and December. 
 
-\newpage
-
 # Results \label{Results}
 
-This section will present and analyze the clustering results of the K-means algorithms. All
-clusters formed and individual stock risk and return characteristics are examined. I constrcuted bespoked equally weighted portfolios then examine their performance against a benchmark. For illustrations and graphs of the clustering results, see
-Appendix 1. A description of the constructed portfolios can be found in Appendix 2 and 3
+This section will present and analyze the clustering results of the K-means algorithms. We will discuss constituent and cluster charcateristics, hence show how we can uncover latent relationship within stocks that based on factors that otherwise would be challenging.
 
-## Clustering results of stock price movement dataset
+## Constiutent Description in Clusters
 
-For each of the K values, the K-means algorithm is ran 1000 times, and the average silhouette value
-for the clustering results is recorded. The result is shown in Figure 1 in Appendix 1. As is apparent
-in the gure, K = 4 yields the optimal silhouette value and K = 6 yields a local optima. Although
-a natural choice is K = 11, as S&P Global divides all companies into 11 major sectors, this is not optimal since K = 11 has a relatively small average silhouette value.
+In table \ref{tab1}, our ranking criterion and filtering lead to the inclusion of three sectors: Basic Materials, Consumer Services, and Financials. The ranking criterion assigns the highest score to stocks that perform the best based on the specified factors. For instance, a score close to 1 for the Price Momentum Rank indicates that a stock has exhibited the strongest price movement over the past 12 months, while a lower score suggests weaker performance. Similarly, for the Volatility Rank, a score close to 1 signifies a stock with lower volatility, and a lower score indicates higher volatility.
 
-## Clustering Result of K = 6 
+Examining Table \ref{tab1}, we observe that most stocks in the Financial sector rank high in return volatility, Consumer Services stocks rank low, and Basic Materials stocks rank even lower. Price Momentum ranks Basic Materials stocks across the spectrum of Price Momnetum Rank, this is similar for Financials and Consumer Services. Consequently, from the ranking, there is no clear grouping by sector in terms of both price and volatility.
 
-## Cluserting Result of K = 9 
+Moving on to Table \ref{tab2}, where we apply K-means clustering and determine the appropriate number of clusters to be K = 4, as suggested by Figure \ref{fig1}. Notably, Cluster 2 predominantly comprises stocks from the Financial sector, while Cluster 1, Cluster 3, and Cluster 4 exhibit a mix of representation from all sectors except Financials. Additional details, including plots of rolling 12-month returns and rolling 12-month standard deviation, can be found in Appendix \ref{app2} ^[These plots illustrate similar movement in returns and volatility, providing insights into stock behavior over a one-year rolling period.It is important to note that these findings do not make a definitive case for a direct relationship among the securities but rather highlight the observed behavior over a specified time frame.].
 
+## Results from Rolling Backtest
+
+Appendix \ref{app2} from \ref{tab3} to \ref{tab15} give a detailed results of our rolling backtest. We aim to evaluate the performance of these clusters over varying investment horizons, specifically focusing on relative risk and return perspectives in comparison to the JSE All Share Index. We add a modification to the methodology discussed in \ref{back} designing a weight column constructed from relative volume weighting. This approach ensures a thorough consideration of liquidity, emphasizing the most liquid stocks within each cluster and have weights to calulate execute our capping function. 
+
+Upon analyzing the final results, a noteworthy trend emerges — the clusters consistently demonstrate positive excess returns relative to the benchmark. When holding the same clusters across investment horizons ranging from 1 to 10 years, it becomes apparent that excess returns are maximized in the shorter time frames. Specifically, over the short-term (1 year from table \ref{tab4}), clusters generate superior excess returns ranging from 30% to 57%, followed by 8.2% to 10.8% in the medium term (5 years from table \ref{tab9}, and 4.8% to 5.6% over the ultra-long term (10 years from table \ref{tab15}).
+
+Turning our attention to tracking error, a similar pattern emerges. Over the ultra-short term, tracking errors range from 1.8% to 7.9%, followed by 10.2% to 10.9% in the medium term, and 9.9% to 11.6% in the long term. This highlights the varying degrees of risk associated with the clusters across different investment horizons.
+
+Examining risk-adjusted metrics, we observe that clusters achieve a high Sharpe Ratio (SR) of 2.3 in the short term. As the investment horizon extends, the SR remains generally low but positive, suggesting that, while the clusters may exhibit lower risk-adjusted returns over longer periods, they continue to outperform in terms of risk efficiency in the shorter term.
+
+In analyzing drawdowns, Cluster 1 displays the least drawdowns and exhibits swift recovery, particularly in very short investment horizons. On the other hand, Cluster 3 consistently experiences a more moderate level of drawdowns and recovery rates. Notably, Clusters 1, 2, and 4 undergo a doubling of drawdowns from year 6 to year 7. However, over the long term, all clusters experience a comparable level of drawdowns, with Cluster 4 showcasing the most protracted recovery period from its down levels.
 \newpage
 
 # References
@@ -272,48 +282,248 @@ a natural choice is K = 11, as S&P Global divides all companies into 11 major se
 
 # Appendix
 
-## Appendix A
+## Appendix A\label{app1}
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 
-ranking.df <- read_csv("data/ranking_date.csv") 
+ranking.df <- read_rds("data/bob.rds") 
 # ranking table
-ranking_table <- ranking.df %>% rename( 'Volatility  Rank' = percentile_rank_vol, "Price Momentum Rank" = percentile_rank_momen) %>% select(stock, 'Volatility  Rank', "Price Momentum Rank" ) %>% mutate(stock = str_remove(stock, ".JO")) %>% rename(Ticker = stock)
+ranking_table <- ranking.df %>% rename('Volatility  Rank' = volatility, "Price Momentum Rank" = momentum) %>% mutate(stock = str_remove(stock, ".JO")) %>% rename(Ticker = stock)
 
-data_o = ranking_table %>% tibble::as_tibble()
-  addtorow          <- list()
-  addtorow$pos      <- list()
-  addtorow$pos[[1]] <- c(0)
-  addtorow$command  <- c(paste("\\hline \n",
-                               "\\endhead \n",
-                               "\\hline \n",
-                               "{\\footnotesize Continued on next page} \n",
-                               "\\endfoot \n",
-                               "\\endlastfoot \n",sep=""))
-
- table <- xtable(data_o, caption = "Clustering Similarity Measures\\label{tab1}")
+table <- xtable(ranking_table, caption = "Stock Ranking By Factors \\label{tab1}")
   print.xtable(table,
              tabular.environment = "longtable",
-             floating = FALSE, # Leave this as is.
-             table.placement = 'H', # Leave this as is.
-             booktabs = T, # Aesthetics
-             include.rownames = FALSE,  # Typically you don't want this in a table.
-             add.to.row = addtorow, # For adding the Continued on next page part...
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
              comment = FALSE,
-             caption.placement = 'bottom',  # Where do you want the caption?
-             size="\\fontsize{12pt}{13pt}\\selectfont"  # Size of text in table..
+             caption.placement = 'bottom'
              )
 ```
 
-```{r, fig.align='left', fig.cap=" Silhoutte Indexes for Clusters \\label{fig1}", fig.ext='png', fig.height=2, fig.width=4}
-knitr::include_graphics("images/silhouette.png")
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/stockclassification.rds")
+table <- xtable(data, caption = "Stock Classification by Sector and Cluster \\label{tab2}")
+  print.xtable(table,
+             # tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'bottom'
+             )
 ```
+
+\newpage
+
+\newpage
+# Appendix B \label{app2}
+
 
 ```{r, fig.align='left', fig.cap=" Clusters Results from Highest Silhoutte \\label{fig2}", fig.ext='png', fig.height=2, fig.width=4}
- knitr::include_graphics("images/clusters_image.png")
+
+knitr::include_graphics("images/returnplots_1.png")
+knitr::include_graphics("images/returnplots_2.png")
+knitr::include_graphics("images/returnplots_4.png")
+knitr::include_graphics("images/returnplots_3.png")
 ```
 
 
-## Appendix B
+```{r, fig.align='left', fig.cap=" Clusters Results from Highest Silhoutte \\label{fig2}", fig.ext='png', fig.height=2, fig.width=4}
+knitr::include_graphics("images/volplots_1.png")
+knitr::include_graphics("images/volplots_2.png")
+knitr::include_graphics("images/volplots_3.png")
+knitr::include_graphics("images/volplots_4.png")
+```
+\newpage
+## Look Back 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/Period_1.rds") %>% arrange(Info)
+table <- xtable(data, caption = "LookBack Performance \\label{tab3}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/Period_2.rds") %>% arrange(Info)
+table <- xtable(data, caption = "LookBack Performance \\label{tab4}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/Period_3.rds") %>% arrange(Info)
+table <- xtable(data, caption = "LookBack Performance \\label{tab5}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+\newpage
+
+## Rolling Backtest Results 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+data <- read_rds(file = "data/rolling_1.rds") %>% as.data.frame()
+
+# Create an xtable object
+xt <- xtable(data, caption = "Rolling Performance Performance \\label{tab6}")
+
+# Print the xtable object with formatting options
+print(xt, 
+      # tabular.environment = "longtable",
+      floating = TRUE,
+      table.placement = 'H',
+      # scalebox = 0.3,
+      comment = FALSE,
+      caption.placement = 'top')
+```
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/rolling_2.rds")  %>% as.data.frame()
+table <- xtable(data, caption = "Rolling Performance Performance \\label{tab7}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/rolling_3.rds") %>% as.data.frame()
+table <- xtable(data, caption = "Rolling Performance Performance \\label{tab8}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/rolling_4.rds") %>% as.data.frame()
+table <- xtable(data, caption = "Rolling Performance Performance \\label{tab9}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/rolling_5.rds") %>% as.data.frame()
+table <- xtable(data, caption = "Rolling Performance Performance \\label{tab10}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/rolling_6.rds") %>% as.data.frame()
+table <- xtable(data, caption = "Rolling Performance Performance \\label{tab11}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/rolling_7.rds") %>% as.data.frame()
+table <- xtable(data, caption = "Rolling Performance Performance \\label{tab12}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/rolling_8.rds") %>% as.data.frame()
+table <- xtable(data, caption = "Rolling Performance Performance \\label{tab13}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/rolling_9.rds") %>% as.data.frame()
+table <- xtable(data, caption = "Rolling Performance Performance \\label{tab14}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+data <- read_rds(file = "data/rolling_10.rds") %>% as.data.frame()
+table <- xtable(data, caption = "Rolling Performance Performance \\label{tab15}")
+  print.xtable(table,
+              tabular.environment = "longtable",
+             floating = TRUE,
+             table.placement = 'H',
+             # scalebox = 0.3,
+             comment = FALSE,
+             caption.placement = 'top'
+  )
+```
+
 
 

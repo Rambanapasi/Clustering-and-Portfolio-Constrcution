@@ -459,9 +459,25 @@ dissimilarity, and thus the model does a poor job clustering similar
 points together.
 
 For this study, we choose \(K\) with the highest silhoutte index/value
+in Figure\ref{fig1} and gives the clusters in Figure \ref{fig2}
+
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/silhouette} \hfill{}
+
+\caption{ Silhoutte Indexes for Clusters \label{fig1}}\label{fig:unnamed-chunk-1}
+\end{figure}
+
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/clusters_image} \hfill{}
+
+\caption{ Clusters Results from Highest Silhoutte \label{fig2}}\label{fig:unnamed-chunk-2}
+\end{figure}
 
 \hypertarget{portfolio-backtest}{%
-\subsection{Portfolio Backtest}\label{portfolio-backtest}}
+\subsection{\texorpdfstring{Portfolio Backtest
+\label{back}}{Portfolio Backtest }}\label{portfolio-backtest}}
 
 The out-of-sample performance of cluster portfolios is compared to the
 benchmark, the JSE All Share Index. To manage risk exposure to a single
@@ -481,39 +497,95 @@ similar to the frequency of rebalancing conducted by the JSE on the
 JSE/FTSE indices, that is, re balance on the last daty of March, June,
 September and December.
 
-\newpage
-
 \hypertarget{results}{%
 \section{\texorpdfstring{Results
 \label{Results}}{Results }}\label{results}}
 
 This section will present and analyze the clustering results of the
-K-means algorithms. All clusters formed and individual stock risk and
-return characteristics are examined. I constrcuted bespoked equally
-weighted portfolios then examine their performance against a benchmark.
-For illustrations and graphs of the clustering results, see Appendix 1.
-A description of the constructed portfolios can be found in Appendix 2
-and 3
+K-means algorithms. We will discuss constituent and cluster
+charcateristics, hence show how we can uncover latent relationship
+within stocks that based on factors that otherwise would be challenging.
 
-\hypertarget{clustering-results-of-stock-price-movement-dataset}{%
-\subsection{Clustering results of stock price movement
-dataset}\label{clustering-results-of-stock-price-movement-dataset}}
+\hypertarget{constiutent-description-in-clusters}{%
+\subsection{Constiutent Description in
+Clusters}\label{constiutent-description-in-clusters}}
 
-For each of the K values, the K-means algorithm is ran 1000 times, and
-the average silhouette value for the clustering results is recorded. The
-result is shown in Figure 1 in Appendix 1. As is apparent in the gure, K
-= 4 yields the optimal silhouette value and K = 6 yields a local optima.
-Although a natural choice is K = 11, as S\&P Global divides all
-companies into 11 major sectors, this is not optimal since K = 11 has a
-relatively small average silhouette value.
+In table \ref{tab1}, our ranking criterion and filtering lead to the
+inclusion of three sectors: Basic Materials, Consumer Services, and
+Financials. The ranking criterion assigns the highest score to stocks
+that perform the best based on the specified factors. For instance, a
+score close to 1 for the Price Momentum Rank indicates that a stock has
+exhibited the strongest price movement over the past 12 months, while a
+lower score suggests weaker performance. Similarly, for the Volatility
+Rank, a score close to 1 signifies a stock with lower volatility, and a
+lower score indicates higher volatility.
 
-\hypertarget{clustering-result-of-k-6}{%
-\subsection{Clustering Result of K = 6}\label{clustering-result-of-k-6}}
+Examining Table \ref{tab1}, we observe that most stocks in the Financial
+sector rank high in return volatility, Consumer Services stocks rank
+low, and Basic Materials stocks rank even lower. Price Momentum ranks
+Basic Materials stocks across the spectrum of Price Momnetum Rank, this
+is similar for Financials and Consumer Services. Consequently, from the
+ranking, there is no clear grouping by sector in terms of both price and
+volatility.
 
-\hypertarget{cluserting-result-of-k-9}{%
-\subsection{Cluserting Result of K = 9}\label{cluserting-result-of-k-9}}
+Moving on to Table \ref{tab2}, where we apply K-means clustering and
+determine the appropriate number of clusters to be K = 4, as suggested
+by Figure \ref{fig1}. Notably, Cluster 2 predominantly comprises stocks
+from the Financial sector, while Cluster 1, Cluster 3, and Cluster 4
+exhibit a mix of representation from all sectors except Financials.
+Additional details, including plots of rolling 12-month returns and
+rolling 12-month standard deviation, can be found in Appendix \ref{app2}
+\footnote{These plots illustrate similar movement in returns and
+  volatility, providing insights into stock behavior over a one-year
+  rolling period.It is important to note that these findings do not make
+  a definitive case for a direct relationship among the securities but
+  rather highlight the observed behavior over a specified time frame.}.
 
-\newpage
+\hypertarget{results-from-rolling-backtest}{%
+\subsection{Results from Rolling
+Backtest}\label{results-from-rolling-backtest}}
+
+Appendix \ref{app2} from \ref{tab3} to \ref{tab15} give a detailed
+results of our rolling backtest. We aim to evaluate the performance of
+these clusters over varying investment horizons, specifically focusing
+on relative risk and return perspectives in comparison to the JSE All
+Share Index. We add a modification to the methodology discussed in
+\ref{back} designing a weight column constructed from relative volume
+weighting. This approach ensures a thorough consideration of liquidity,
+emphasizing the most liquid stocks within each cluster and have weights
+to calulate execute our capping function.
+
+Upon analyzing the final results, a noteworthy trend emerges --- the
+clusters consistently demonstrate positive excess returns relative to
+the benchmark. When holding the same clusters across investment horizons
+ranging from 1 to 10 years, it becomes apparent that excess returns are
+maximized in the shorter time frames. Specifically, over the short-term
+(1 year from table \ref{tab4}), clusters generate superior excess
+returns ranging from 30\% to 57\%, followed by 8.2\% to 10.8\% in the
+medium term (5 years from table \ref{tab9}, and 4.8\% to 5.6\% over the
+ultra-long term (10 years from table \ref{tab15}).
+
+Turning our attention to tracking error, a similar pattern emerges. Over
+the ultra-short term, tracking errors range from 1.8\% to 7.9\%,
+followed by 10.2\% to 10.9\% in the medium term, and 9.9\% to 11.6\% in
+the long term. This highlights the varying degrees of risk associated
+with the clusters across different investment horizons.
+
+Examining risk-adjusted metrics, we observe that clusters achieve a high
+Sharpe Ratio (SR) of 2.3 in the short term. As the investment horizon
+extends, the SR remains generally low but positive, suggesting that,
+while the clusters may exhibit lower risk-adjusted returns over longer
+periods, they continue to outperform in terms of risk efficiency in the
+shorter term.
+
+In analyzing drawdowns, Cluster 1 displays the least drawdowns and
+exhibits swift recovery, particularly in very short investment horizons.
+On the other hand, Cluster 3 consistently experiences a more moderate
+level of drawdowns and recovery rates. Notably, Clusters 1, 2, and 4
+undergo a doubling of drawdowns from year 6 to year 7. However, over the
+long term, all clusters experience a comparable level of drawdowns, with
+Cluster 4 showcasing the most protracted recovery period from its down
+levels. \newpage
 
 \hypertarget{references}{%
 \section{References}\label{references}}
@@ -562,70 +634,318 @@ evolutionary computation}. 1--8.
 \section{Appendix}\label{appendix}}
 
 \hypertarget{appendix-a}{%
-\subsection{Appendix A}\label{appendix-a}}
+\subsection{\texorpdfstring{Appendix
+A\label{app1}}{Appendix A}}\label{appendix-a}}
 
-\begingroup\fontsize{12pt}{13pt}\selectfont
-\begin{longtable}{lrr}
-  \toprule
-Ticker & Volatility  Rank & Price Momentum Rank \\ 
-  \hline 
-\endhead 
-\hline 
-{\footnotesize Continued on next page} 
-\endfoot 
-\endlastfoot 
- \midrule
-ABG & 26.67 & 21.67 \\ 
-  ANG & 16.67 & 16.67 \\ 
-  BIK & 80.00 & 73.33 \\ 
-  EQU & 90.00 & 86.67 \\ 
-  FFA & 3.33 & 53.33 \\ 
-  GFI & 50.00 & 30.00 \\ 
-  GLN & 56.67 & 36.67 \\ 
-  HAR & 46.67 & 100.00 \\ 
-  HMN & 66.67 & 60.00 \\ 
-  KAP & 70.00 & 33.33 \\ 
-  KBO & 100.00 & 3.33 \\ 
-  MCG & 73.33 & 43.33 \\ 
-  MRP & 10.00 & 46.67 \\ 
-  MTM & 60.00 & 76.67 \\ 
-  NPH & 96.67 & 26.67 \\ 
-  ORN & 30.00 & 10.00 \\ 
-  OUT & 20.00 & 56.67 \\ 
-  PAN & 33.33 & 83.33 \\ 
-  PIK & 36.67 & 6.67 \\ 
-  PPC & 83.33 & 95.00 \\ 
-  QLT & 53.33 & 90.00 \\ 
-  RMH & 86.67 & 95.00 \\ 
-  SAP & 43.33 & 80.00 \\ 
-  SBK & 13.33 & 70.00 \\ 
-  SOL & 40.00 & 13.33 \\ 
-  TCP & 93.33 & 63.33 \\ 
-  TFG & 23.33 & 40.00 \\ 
-  TRU & 6.67 & 50.00 \\ 
-  VKE & 76.67 & 66.67 \\ 
-  WHL & 63.33 & 21.67 \\ 
-   \bottomrule
-\caption{Clustering Similarity Measures\label{tab1}} 
+\begin{longtable}{rlrrl}
+  \hline
+ & Ticker & Price Momentum Rank & Volatility  Rank & Sector \\ 
+  \hline
+1 & ANG & 11.76 & 100.00 & Basic Materials \\ 
+  2 & GFI & 82.35 & 94.12 & Basic Materials \\ 
+  3 & PAN & 5.88 & 52.94 & Basic Materials \\ 
+  4 & SAP & 52.94 & 64.71 & Basic Materials \\ 
+  5 & MRP & 100.00 & 17.65 & Consumer Services \\ 
+  6 & PIK & 35.29 & 70.59 & Consumer Services \\ 
+  7 & TFG & 94.12 & 88.24 & Consumer Services \\ 
+  8 & TRU & 23.53 & 82.35 & Consumer Services \\ 
+  9 & WHL & 70.59 & 76.47 & Consumer Services \\ 
+  10 & ABG & 76.47 & 47.06 & Financials \\ 
+  11 & EQU & 17.65 & 23.53 & Financials \\ 
+  12 & FFA & 29.41 & 5.88 & Financials \\ 
+  13 & MTM & 47.06 & 41.18 & Financials \\ 
+  14 & OUT & 88.24 & 35.29 & Financials \\ 
+  15 & SBK & 41.18 & 29.41 & Financials \\ 
+  16 & VKE & 58.82 & 11.76 & Financials \\ 
+  17 & KAP & 64.71 & 58.82 & Industrials \\ 
+   \hline
+\hline
+\caption{Stock Ranking By Factors \label{tab1}} 
 \end{longtable}
-\endgroup
 
-\begin{figure}[H]
+\begin{table}[H]
+\centering
+\begin{tabular}{rlrl}
+  \hline
+ & Ticker & Cluster & Sector \\ 
+  \hline
+1 & ABG.JO &   1 & Financials \\ 
+  2 & MRP.JO &   1 & Consumer Services \\ 
+  3 & OUT.JO &   1 & Financials \\ 
+  4 & EQU.JO &   2 & Financials \\ 
+  5 & FFA.JO &   2 & Financials \\ 
+  6 & MTM.JO &   2 & Financials \\ 
+  7 & SBK.JO &   2 & Financials \\ 
+  8 & VKE.JO &   2 & Financials \\ 
+  9 & ANG.JO &   3 & Basic Materials \\ 
+  10 & PAN.JO &   3 & Basic Materials \\ 
+  11 & PIK.JO &   3 & Consumer Services \\ 
+  12 & TRU.JO &   3 & Consumer Services \\ 
+  13 & GFI.JO &   4 & Basic Materials \\ 
+  14 & KAP.JO &   4 & Industrials \\ 
+  15 & SAP.JO &   4 & Basic Materials \\ 
+  16 & TFG.JO &   4 & Consumer Services \\ 
+  17 & WHL.JO &   4 & Consumer Services \\ 
+   \hline
+\end{tabular}
+\caption{Stock Classification by Sector and Cluster \label{tab2}} 
+\end{table}
 
-\includegraphics[width=5.56in]{images/silhouette} \hfill{}
+\newpage
 
-\caption{ Silhoutte Indexes for Clusters \label{fig1}}\label{fig:unnamed-chunk-2}
-\end{figure}
-
-\begin{figure}[H]
-
-\includegraphics[width=5.56in]{images/clusters_image} \hfill{}
-
-\caption{ Clusters Results from Highest Silhoutte \label{fig2}}\label{fig:unnamed-chunk-3}
-\end{figure}
+\newpage
 
 \hypertarget{appendix-b}{%
-\subsection{Appendix B}\label{appendix-b}}
+\section{\texorpdfstring{Appendix B
+\label{app2}}{Appendix B }}\label{appendix-b}}
+
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/returnplots_1} \hfill{}
+
+\caption{ Clusters Results from Highest Silhoutte \label{fig2}}\label{fig:unnamed-chunk-5-1}
+\end{figure}
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/returnplots_2} \hfill{}
+
+\caption{ Clusters Results from Highest Silhoutte \label{fig2}}\label{fig:unnamed-chunk-5-2}
+\end{figure}
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/returnplots_4} \hfill{}
+
+\caption{ Clusters Results from Highest Silhoutte \label{fig2}}\label{fig:unnamed-chunk-5-3}
+\end{figure}
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/returnplots_3} \hfill{}
+
+\caption{ Clusters Results from Highest Silhoutte \label{fig2}}\label{fig:unnamed-chunk-5-4}
+\end{figure}
+
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/volplots_1} \hfill{}
+
+\caption{ Clusters Results from Highest Silhoutte \label{fig2}}\label{fig:unnamed-chunk-6-1}
+\end{figure}
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/volplots_2} \hfill{}
+
+\caption{ Clusters Results from Highest Silhoutte \label{fig2}}\label{fig:unnamed-chunk-6-2}
+\end{figure}
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/volplots_3} \hfill{}
+
+\caption{ Clusters Results from Highest Silhoutte \label{fig2}}\label{fig:unnamed-chunk-6-3}
+\end{figure}
+\begin{figure}[H]
+
+\includegraphics[width=5.56in]{images/volplots_4} \hfill{}
+
+\caption{ Clusters Results from Highest Silhoutte \label{fig2}}\label{fig:unnamed-chunk-6-4}
+\end{figure}
+\newpage
+
+\hypertarget{look-back}{%
+\subsection{Look Back}\label{look-back}}
+
+\begin{longtable}{rllrrrr}
+\caption{LookBack Performance \label{tab3}} \\ 
+  \hline
+ & Period & Info & X1 & X3 & X4 & X2 \\ 
+  \hline
+1 & Last 12 Months & Adj. Sharpe Ratio & 0.17 & 0.18 & 0.23 & 0.12 \\ 
+  2 & Last 12 Months & Avg DD & 0.13 & 0.15 & 0.17 & 0.12 \\ 
+  3 & Last 12 Months & Beta & 1.11 & 0.69 & 0.97 & 1.20 \\ 
+  4 & Last 12 Months & Beta Bear & 1.97 & 0.01 & 1.30 & 2.05 \\ 
+  5 & Last 12 Months & Beta Bull & 1.05 & 1.43 & 0.52 & 1.41 \\ 
+  6 & Last 12 Months & Returns Excess (Ann.) & 0.06 & 0.05 & 0.06 & 0.05 \\ 
+  7 & Last 12 Months & Tracking Error & 0.20 & 0.19 & 0.20 & 0.17 \\ 
+   \hline
+\hline
+\end{longtable}
+
+\begin{longtable}{rllrrrr}
+\caption{LookBack Performance \label{tab4}} \\ 
+  \hline
+ & Period & Info & X1 & X3 & X4 & X2 \\ 
+  \hline
+1 & Last 3 Months & Adj. Sharpe Ratio & 0.43 & 0.17 & 1.37 & 0.25 \\ 
+  2 & Last 3 Months & Avg DD & 0.10 & 0.07 & 0.03 & 0.09 \\ 
+  3 & Last 3 Months & Beta & 1.11 & 0.46 & 0.53 & 1.29 \\ 
+  4 & Last 3 Months & Beta Bear & 1.19 & 0.55 & 1.20 & 1.87 \\ 
+  5 & Last 3 Months & Beta Bull & 0.55 & -0.15 & -2.46 & -0.24 \\ 
+  6 & Last 3 Months & Returns Excess (Ann.) & 0.13 & 0.09 & 0.21 & 0.11 \\ 
+  7 & Last 3 Months & Tracking Error & 0.16 & 0.17 & 0.17 & 0.13 \\ 
+   \hline
+\hline
+\end{longtable}
+
+\begin{longtable}{rllrrrr}
+\caption{LookBack Performance \label{tab5}} \\ 
+  \hline
+ & Period & Info & X1 & X3 & X4 & X2 \\ 
+  \hline
+1 & Last 6 Months & Adj. Sharpe Ratio & -0.06 & 0.55 & 0.23 & 0.07 \\ 
+  2 & Last 6 Months & Avg DD & 0.35 & 0.06 & 0.10 & 0.17 \\ 
+  3 & Last 6 Months & Beta & 1.16 & 0.57 & 1.06 & 1.19 \\ 
+  4 & Last 6 Months & Beta Bear & 2.20 & 0.37 & 1.56 & 2.38 \\ 
+  5 & Last 6 Months & Beta Bull & 1.09 & 1.35 & 0.77 & 0.70 \\ 
+  6 & Last 6 Months & Returns Excess (Ann.) & 0.03 & 0.10 & 0.08 & 0.05 \\ 
+  7 & Last 6 Months & Tracking Error & 0.20 & 0.17 & 0.20 & 0.18 \\ 
+   \hline
+\hline
+\end{longtable}
+\newpage
+
+\hypertarget{rolling-backtest-results}{%
+\subsection{Rolling Backtest Results}\label{rolling-backtest-results}}
+
+\begin{table}[H]
+\centering
+\caption{Rolling Performance Performance \label{tab6}} 
+\begin{tabular}{rllrrrr}
+  \hline
+ & Investment Horizon & Info & Cluster\_1 & Cluster\_3 & Cluster\_4 & Cluster\_2 \\ 
+  \hline
+1 & 1 Year & Ann Excess Return & 0.58 & 0.31 & 0.46 & 0.36 \\ 
+  2 & 1 Year & Ann Tracking Error & 0.08 & 0.13 & 0.12 & 0.02 \\ 
+  3 & 1 Year & Adj. Sharpe Ratio & 2.33 & -0.17 & 0.65 & 0.30 \\ 
+  4 & 1 Year & DD Length & 2.00 & 3.00 & 3.00 & 3.00 \\ 
+  5 & 1 Year & Max DD & 0.00 & 0.12 & 0.06 & 0.02 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\begin{longtable}{rllrrrr}
+\caption{Rolling Performance Performance \label{tab7}} \\ 
+  \hline
+ & Investment Horizon & Info & Cluster\_1 & Cluster\_3 & Cluster\_4 & Cluster\_2 \\ 
+  \hline
+1 & 2 Year & Ann Excess Return & 0.18 & 0.10 & 0.14 & 0.10 \\ 
+  2 & 2 Year & Ann Tracking Error & 0.10 & 0.12 & 0.10 & 0.08 \\ 
+  3 & 2 Year & Adj. Sharpe Ratio & 0.20 & -0.38 & -0.11 & -0.63 \\ 
+  4 & 2 Year & DD Length & 3.00 & 7.00 & 7.00 & 4.00 \\ 
+  5 & 2 Year & Max DD & 0.12 & 0.24 & 0.16 & 0.14 \\ 
+   \hline
+\hline
+\end{longtable}
+
+\begin{longtable}{rllrrrr}
+\caption{Rolling Performance Performance \label{tab8}} \\ 
+  \hline
+ & Investment Horizon & Info & Cluster\_1 & Cluster\_3 & Cluster\_4 & Cluster\_2 \\ 
+  \hline
+1 & 3 Year & Ann Excess Return & 0.17 & 0.13 & 0.14 & 0.15 \\ 
+  2 & 3 Year & Ann Tracking Error & 0.10 & 0.13 & 0.12 & 0.09 \\ 
+  3 & 3 Year & Adj. Sharpe Ratio & 0.59 & 0.18 & 0.25 & 0.35 \\ 
+  4 & 3 Year & DD Length & 4.00 & 6.00 & 11.00 & 4.00 \\ 
+  5 & 3 Year & Max DD & 0.12 & 0.24 & 0.16 & 0.14 \\ 
+   \hline
+\hline
+\end{longtable}
+
+\begin{longtable}{rllrrrr}
+\caption{Rolling Performance Performance \label{tab9}} \\ 
+  \hline
+ & Investment Horizon & Info & Cluster\_1 & Cluster\_3 & Cluster\_4 & Cluster\_2 \\ 
+  \hline
+1 & 4 Year & Ann Excess Return & 0.16 & 0.05 & 0.11 & 0.11 \\ 
+  2 & 4 Year & Ann Tracking Error & 0.11 & 0.12 & 0.11 & 0.09 \\ 
+  3 & 4 Year & Adj. Sharpe Ratio & 0.69 & -0.19 & 0.25 & 0.27 \\ 
+  4 & 4 Year & DD Length & 4.00 & 8.00 & 15.00 & 5.00 \\ 
+  5 & 4 Year & Max DD & 0.12 & 0.24 & 0.16 & 0.14 \\ 
+   \hline
+\hline
+\end{longtable}
+
+\begin{longtable}{rllrrrr}
+\caption{Rolling Performance Performance \label{tab10}} \\ 
+  \hline
+ & Investment Horizon & Info & Cluster\_1 & Cluster\_3 & Cluster\_4 & Cluster\_2 \\ 
+  \hline
+1 & 5 Year & Ann Excess Return & 0.11 & 0.07 & 0.09 & 0.08 \\ 
+  2 & 5 Year & Ann Tracking Error & 0.11 & 0.13 & 0.10 & 0.10 \\ 
+  3 & 5 Year & Adj. Sharpe Ratio & 0.41 & 0.08 & 0.22 & 0.19 \\ 
+  4 & 5 Year & DD Length & 4.00 & 10.00 & 19.00 & 4.00 \\ 
+  5 & 5 Year & Max DD & 0.12 & 0.24 & 0.16 & 0.14 \\ 
+   \hline
+\hline
+\end{longtable}
+
+\begin{longtable}{rllrrrr}
+\caption{Rolling Performance Performance \label{tab11}} \\ 
+  \hline
+ & Investment Horizon & Info & Cluster\_1 & Cluster\_3 & Cluster\_4 & Cluster\_2 \\ 
+  \hline
+1 & 6 Year & Ann Excess Return & 0.08 & 0.06 & 0.06 & 0.09 \\ 
+  2 & 6 Year & Ann Tracking Error & 0.11 & 0.12 & 0.11 & 0.10 \\ 
+  3 & 6 Year & Adj. Sharpe Ratio & 0.28 & 0.09 & 0.04 & 0.39 \\ 
+  4 & 6 Year & DD Length & 6.00 & 12.00 & 23.00 & 5.00 \\ 
+  5 & 6 Year & Max DD & 0.16 & 0.24 & 0.16 & 0.14 \\ 
+   \hline
+\hline
+\end{longtable}
+
+\begin{longtable}{rllrrrr}
+\caption{Rolling Performance Performance \label{tab12}} \\ 
+  \hline
+ & Investment Horizon & Info & Cluster\_1 & Cluster\_3 & Cluster\_4 & Cluster\_2 \\ 
+  \hline
+1 & 7 Year & Ann Excess Return & 0.06 & 0.07 & 0.04 & 0.06 \\ 
+  2 & 7 Year & Ann Tracking Error & 0.12 & 0.12 & 0.11 & 0.11 \\ 
+  3 & 7 Year & Adj. Sharpe Ratio & 0.08 & 0.19 & -0.03 & 0.09 \\ 
+  4 & 7 Year & DD Length & 6.00 & 13.00 & 27.00 & 5.00 \\ 
+  5 & 7 Year & Max DD & 0.35 & 0.24 & 0.30 & 0.26 \\ 
+   \hline
+\hline
+\end{longtable}
+
+\begin{longtable}{rllrrrr}
+\caption{Rolling Performance Performance \label{tab13}} \\ 
+  \hline
+ & Investment Horizon & Info & Cluster\_1 & Cluster\_3 & Cluster\_4 & Cluster\_2 \\ 
+  \hline
+1 & 8 Year & Ann Excess Return & 0.06 & 0.04 & 0.04 & 0.06 \\ 
+  2 & 8 Year & Ann Tracking Error & 0.12 & 0.11 & 0.11 & 0.10 \\ 
+  3 & 8 Year & Adj. Sharpe Ratio & 0.16 & 0.05 & 0.03 & 0.15 \\ 
+  4 & 8 Year & DD Length & 8.00 & 10.00 & 31.00 & 6.00 \\ 
+  5 & 8 Year & Max DD & 0.35 & 0.24 & 0.30 & 0.26 \\ 
+   \hline
+\hline
+\end{longtable}
+
+\begin{longtable}{rllrrrr}
+\caption{Rolling Performance Performance \label{tab14}} \\ 
+  \hline
+ & Investment Horizon & Info & Cluster\_1 & Cluster\_3 & Cluster\_4 & Cluster\_2 \\ 
+  \hline
+1 & 9 Year & Ann Excess Return & 0.05 & 0.04 & 0.05 & 0.04 \\ 
+  2 & 9 Year & Ann Tracking Error & 0.12 & 0.11 & 0.11 & 0.10 \\ 
+  3 & 9 Year & Adj. Sharpe Ratio & 0.12 & 0.05 & 0.10 & 0.04 \\ 
+  4 & 9 Year & DD Length & 8.00 & 12.00 & 35.00 & 5.00 \\ 
+  5 & 9 Year & Max DD & 0.35 & 0.24 & 0.30 & 0.26 \\ 
+   \hline
+\hline
+\end{longtable}
+
+\begin{longtable}{rllrrrr}
+\caption{Rolling Performance Performance \label{tab15}} \\ 
+  \hline
+ & Investment Horizon & Info & Cluster\_1 & Cluster\_3 & Cluster\_4 & Cluster\_2 \\ 
+  \hline
+1 & 10 Year & Ann Excess Return & 0.06 & 0.05 & 0.06 & 0.05 \\ 
+  2 & 10 Year & Ann Tracking Error & 0.12 & 0.11 & 0.11 & 0.10 \\ 
+  3 & 10 Year & Adj. Sharpe Ratio & 0.17 & 0.18 & 0.23 & 0.12 \\ 
+  4 & 10 Year & DD Length & 10.00 & 10.00 & 18.00 & 6.00 \\ 
+  5 & 10 Year & Max DD & 0.35 & 0.24 & 0.30 & 0.26 \\ 
+   \hline
+\hline
+\end{longtable}
 
 \bibliography{Tex/ref}
 
