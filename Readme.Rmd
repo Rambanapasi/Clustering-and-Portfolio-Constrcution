@@ -31,7 +31,7 @@ To assess performance, first I will use a simple look-back period to observe per
 
 # Lets Start 
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
  rm(list = ls()) # Clean your environment:
 gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
 require("pacman")
@@ -42,7 +42,7 @@ list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.
 ```
 
 # Retrieving the data
-```{r message=FALSE, warning=FALSE, include=FALSE}
+```{r  message=FALSE, warning=FALSE, include=FALSE}
 # load the daily stock data from the JSE, via yahoo finance
   data  <- read_csv("data/JSE full list .csv")
 # ranking.df <- read_csv("data/ranking_date.csv")
@@ -134,7 +134,7 @@ clusteringdata <-  clusteringdata %>%
 
 # Prepping data for the K- Means Clustering
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r  message=FALSE, warning=FALSE, include=FALSE}
 # Make clusters from data of the previous year
 # get the daily return matrix 
 
@@ -203,7 +203,7 @@ cluster.merging <- cbind(names, cluster = km.res$cluster) %>% merge(., clusterin
 
 I want to get an idea of cluster constituent characteristics, that way I can better describe aggregate charcateristics.
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+```{r  message=FALSE, warning=FALSE, include=FALSE}
 # lets get rid of all the very volatile stock 
 
 volatile_stock <- cluster.merging %>% 
@@ -317,7 +317,7 @@ plot_return_list
 # Backtesting
 
 From the constituent review, I noticed through the rolling return and risk metrics there was some consistency amongst constituents in clusters. This gives some encouragement that constituents have some commonalities in their risk/return profile over 12 months.  Therefore carrying on this theme, I will filter out the volatile stock to get an idea of the clusters, and see how long these factors work or not. 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+```{r  message=FALSE, warning=FALSE, include=FALSE}
 # from the original dataframe get the rebalancing dates 
 monthly_data <-
 cluster.merging %>% filter(!stock %in% volatile_stock) %>% 
@@ -405,7 +405,7 @@ cluster_return_df <- static_backtest_performance %>%
 In hindsight, how well did the clusters perform, relative to the JSE all share? 
 
 - give this information we can charcaterize our clusters and  construct cluster portfolios to study aggregate charcateristics.
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+```{r  message=FALSE, warning=FALSE, include=FALSE}
 # get some stats on the portfolios that you just constructed
 Ports <- cluster_return_df %>% 
   tbl2xts::tbl_xts(cols_to_xts = cluster_return, spread_by = cluster) %>%
@@ -484,7 +484,7 @@ for (i in seq_along(Tab_stats)) {
 # Rolling Backtest
 
 - take the clusters formed the backward looking analysis and test them on a series investment horizons. How long this strategy works and why, but the why bit links to the constituents. 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+```{r  message=FALSE, warning=FALSE, include=FALSE}
 # to avoid null datasets, filter out 2024
 
 clusteringdata <- clusteringdata %>%
@@ -553,7 +553,7 @@ cluster_portfolio <- lapply(1:length(investment_horizon_dfs), function(i) {
 })
 ```
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+```{r  message=FALSE, warning=FALSE, include=FALSE}
 # now see performance given our capping methodology
 # at the rebalancing date you want to take the top n of each clusters and reweight. 
 
@@ -646,7 +646,7 @@ rolling_Backtest[[i]] <- cluster_return_df
 
 ```
 
-```{r}
+```{r  message=FALSE, warning=FALSE, include=FALSE}
 # from the results, lets get some perfromance metrics 
 
 # clean our BM dataset
