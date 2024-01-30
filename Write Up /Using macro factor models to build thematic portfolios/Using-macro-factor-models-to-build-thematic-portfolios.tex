@@ -178,7 +178,8 @@
 
 \begin{frontmatter}  %
 
-\title{Navigating the Stock Market: A Guide to Smart Investing}
+\title{An Aproach to Using K-means Clustering to Uncover Latent
+Relationship Amongst Asset Performance}
 
 % Set to FALSE if wanting to remove title (for submission)
 
@@ -198,8 +199,15 @@
 
 \begin{abstract}
 \small{
-This paper investigates dividends return predictive signals, focusing on
-Dividend Yield (DY) and Dividend Growth (DG) signals, w
+This study employs a K-Means clustering algorithm coupled with technical
+factors, to create ``cluster portfolios'' to uncover latent
+relationships in asset performance. Initial assessments show that these
+portfolios exhibit strong short-term performance with elevated risk
+levels. A rolling backtest reveals that Cluster 1, representing three
+sectors, displays strong positive performance measured by the Sharpe
+Ratio over short horizons. This integrated approach provides a valuable
+toolkit for portfolio managers navigating market shifts, offering
+insights into stock perfromance.
 }
 \end{abstract}
 
@@ -208,8 +216,7 @@ Dividend Yield (DY) and Dividend Growth (DG) signals, w
 
 \begin{keyword}
 \footnotesize{
-K-Means\sep Clustering \sep Price Momentun \sep Volatility
-\sep Diversification \\
+K-Means\sep Clustering \sep Price Momentun \sep Volatility \\
 \vspace{0.3cm}
 }
 \end{keyword}
@@ -256,11 +263,11 @@ a chain reaction in valuations across capital markets, affecting sectors
 and industries disproportionately. For investors, this underscores the
 importance of carefully scrutinizing different parts of the stock market
 to pinpoint companies that can enhance the risk/return profile of a
-portfolio. We set out to employ a combination of K-Means clustering and
-technical factors. Essentially, we reduce the dimensions of our sample
-data, to create ``cluster portfolios'' making it less challenging to
-uncover latent relationships in asset performance and group
-characteristics.
+portfolio. In this study, we employ a combination of K-Means clustering
+and technical factors to uncover latent relationships wih group of
+stock. Essentially, we reduce the dimensions of our sample data, to
+create ``cluster portfolios'' making it less challenging to uncover
+latent relationships in asset performance and group characteristics.
 
 Our initial assessment involves the utilization of a simple look-back
 period to observe performance and risk over 3, 6, and 12 months. This
@@ -269,12 +276,12 @@ performance over short investment horizons. However, they also display
 significant risk levels when compared to a market index. To further
 evaluate the robustness of the portfolios formed through our factor
 filter, we conduct a rolling backtest. The findings suggest that,
-despite the elevated levels of risk attributed to the low number of
-stocks in each portfolio, risk-adjusted performance, as measured by the
-Sharpe Ratio (SR), returns strong positive performance over short time
-horizons. It is noteworthy that this strategy demonstrates effectiveness
-over shorter investment horizons. However, as the investment horizon
-extends, the superior risk adjsuted return flatuates and diminishes.
+despite the elevated levels of risk, risk-adjusted performance, as
+measured by the Sharpe Ratio (SR) in Cluster 1 that was represented by
+three sectors, returns strong positive performance over short time
+horizons. Thus buttressing, our anlaysis from the lookback analysis.
+However, as the investment horizon extends, the superior risk adjusted
+return flatuates and diminishes with low positive SR.
 
 This integrated approach of clustering and factor analysis provides a
 valuable toolkit for portfolio managers seeking to identify potential
@@ -282,8 +289,8 @@ out performers admidst anticipated market shifts. The focus on reducing
 the complexity of the data allows for a more nuanced understanding of
 asset performance, with the potential for enhanced risk-adjusted returns
 in the short term. Nevertheless, the strategy's limitations in the
-context of underscore the importance of continual refinement and
-adaptation to evolving market conditions.
+context of number of factors underscore the importance of continual
+refinement and adaptation to better suit evolving market conditions.
 
 The next section \ref{lit} offers a brief discription of the various
 unsupervised machine learning algorithms. Section \ref{meth} details the
@@ -295,25 +302,22 @@ discusses the results and sectiom \ref{con} offers the conclusion.
 \section{\texorpdfstring{Clustering and Appliactions to Asset Management
 \label{lit}}{Clustering and Appliactions to Asset Management }}\label{clustering-and-appliactions-to-asset-management}}
 
-Unsupervised machine learning is a type of machine learning that
-searches for patterns in datasets with no pre-existing labels and a
-minimum of human intervention. One way in which unsupervised learning
-can be applied in data science and other quantitive disciplines is
-through clustering algorithms. Clustering is the process of grouping
-objects based on similar characteristics. The algorithms designed to
-cluster, achieve this function by connecting observation through
-distances, density of data points, graphs, or various statistical
-distributions. For a cluster to have meaning an algorithm has to
-maximize intra-cluster similarity and minimize inter-cluster similarity,
-such that each cluster contains information that's as dissimilar to
-other
+Clustering is the process of grouping objects based on similar
+characteristics. The algorithms designed to cluster, achieve this
+function by connecting observation through distances, density of data
+points, graphs, or various statistical distributions. This is a form of
+unsupervised machine learning, that searches for patterns in datasets
+with no pre-existing labels and a minimum of human intervention. For a
+cluster to have meaning an algorithm has to maximize intra-cluster
+similarity and minimize inter-cluster similarity, such that each cluster
+contains information that's as dissimilar to other
 clusters(\protect\hyperlink{ref-kassambara2017practical}{Kassambara,
 2017}). There exists various forms of cluster algorithms, each that
 addresses a broader task of analysis. The algorithms can be divided into
 two main types being partitioning clustering and hierarchical
 clustering. The major difference between the divisions of clustering is
 the partition clustering aims to specify a predetermined number of
-clusters whilst does not
+clusters whilst hierarchical clustering does not
 (\protect\hyperlink{ref-kassambara2017practical}{Kassambara, 2017}).
 Within partition clustering, for data with a small set of variables,
 K-means clustering and partitioning around medoids (PAM) are the most
@@ -322,7 +326,7 @@ K-means, each cluster is represented by the center or means of the data
 points belonging to the entire dataset. This makes the algorithm
 sensitive to outliers. However with PAM, each cluster is represented by
 one of the objects in the cluster. The other partition clustering
-algorithm used for datasets with a large number of variables is
+algorithm used for datasets with a very large number of variables is
 Clustering Large Applications (CLARA).
 
 In asset management, key to funds generating superior risk adjusted
@@ -347,7 +351,7 @@ similar approach to Marvin
 combination of market ratios and fundamental ratios (price to earnings
 ratio, return on assets ratio and asset turnover ratio ). From this
 study, compared to the S\&P 500, portfolios constructed using market
-ratios under performed those that used fundamental ratios. \newpage
+ratios under performed those that used fundamental ratios.
 
 \hypertarget{data-and-methodology}{%
 \section{\texorpdfstring{Data and Methodology
@@ -498,11 +502,12 @@ period \footnote{The maximum set for each stock in each cluster is its
   equal weight for that cluster i.e if there were 10 stock in cluster 1,
   the maximum weight would be 10\%}. Theoretically, this should preserve
 the within cluster diversification benefits and allow the portfolio
-value to either increase or decrease depending on stock performance
-during the quarter. We rebalance the portfolios once every three months,
-similar to the frequency of rebalancing conducted by the JSE on the
-JSE/FTSE indices, that is, re balance on the last daty of March, June,
-September and December.
+value to either increase or decrease depending on relative stock
+performance during the quarter however capping limit asset risk
+expsoure. We re balance the portfolios once every three months, similar
+to the frequency of rebalancing conducted by the JSE on the JSE/FTSE
+indices, that is, re balance on the last daty of March, June, September
+and December.
 
 \hypertarget{results}{%
 \section{\texorpdfstring{Results
@@ -547,6 +552,11 @@ rolling 12-month standard deviation, can be found in Appendix \ref{app2}
   rolling period.It is important to note that these findings do not make
   a definitive case for a direct relationship among the securities but
   rather highlight the observed behavior over a specified time frame.}.
+From tables \ref{tab3}, \ref{tab4} and \ref{tab5} we notice that risk
+adjusted returns for the clusters are highest on the shortest look back
+period of 3 months. Within that period SR is highest for Cluster at
+1.37, emphasizing that investor recieve more reward for undertaking a
+certain level of risk.
 
 \hypertarget{results-from-rolling-backtest}{%
 \subsection{Results from Rolling
@@ -577,7 +587,9 @@ term, tracking errors range from 1.8\% to 7.9\%, followed by 10.2\% to
 10.9\% in the medium term, and 9.9\% to 11.6\% in the long term. This
 highlights the varying degrees of risk associated with the clusters
 across different investment horizons. However, this tracking error
-largely remains in tight ranges through the investment horizons.
+largely remains in tight ranges through the investment horizons, thus
+displaying ability for cluster portfolios to take consistent amount of
+risk relative to the benchmark.
 
 Examining risk-adjusted metrics, we observe that clusters achieve a high
 Sharpe Ratio (SR) of 2.3 in the short term. As the investment horizon
@@ -611,20 +623,29 @@ positive excess returns but also demonstrate consistency in risk
 relative to the benchmark. Over short periods, these portfolios generate
 above-average risk-adjusted returns, albeit with the exception of the
 lone high value observed in Cluster 1 over a one-year investment holding
-period. A nuanced examination of the formed clusters reveals that a
-single industry can make up an entire cluster, while a mix of industries
-can compose another. This finding could be interpreted in various ways;
-on one hand, it may suggest robust intra-sector relationships, allowing
-for improved risk modeling. On the other hand, diverse clusters could
-imply greater opportunities for sectoral rotation, depending on investor
-capital expectations.
+period. A nuanced examination of the formed clusters reveals several
+important discoveries from our study. We found that as the investment
+horizon extends, maximum drawdowns for all clusters, in general,
+remained the same. However, at year 6 to 7, all but Cluster 3 had their
+maximum drawdowns increase. A deeper investigation could reveal valuable
+insight into risk drivers for the clusters.
 
-In conclusion, to enhance the comprehensiveness of this study, the
-inclusion of additional factors, particularly fundamental ones, in our
-K-means clustering framework could be considered. Furthermore, testing
-various partition algorithms for their ability to form clusters with
-high orthogonal risk drivers would contribute to a more thorough
-analysis.
+Second, a single industry can make up an entire cluster, while a mix of
+industries can compose another. These findings could be interpreted in
+various ways; for instance, clusters with sector concentration and large
+drawdowns could signal great sensitivity to systematic risk attached to
+that sector. On the other hand, diverse clusters could imply greater
+opportunities for sectoral rotation, depending on investor capital
+expectations.
+
+We used price momentum and volatility factors, but other factors could
+be used to study group characteristics, thus showing the power of
+clustering and factor analyses. In conclusion, to enhance the
+comprehensiveness of this study, the inclusion of additional factors,
+particularly fundamental ones, in our K-means clustering framework could
+be considered. Furthermore, testing various partition algorithms for
+their ability to form clusters with high orthogonal risk drivers would
+contribute to a more thorough analysis.
 
 \newpage
 
@@ -679,6 +700,7 @@ evolutionary computation}. 1--8.
 A\label{app1}}{Appendix A}}\label{appendix-a}}
 
 \begin{longtable}{rlrrl}
+\caption{Stock Ranking By Factors \label{tab1}} \\ 
   \hline
  & Ticker & Price Momentum Rank & Volatility  Rank & Sector \\ 
   \hline
@@ -701,11 +723,11 @@ A\label{app1}}{Appendix A}}\label{appendix-a}}
   17 & KAP & 64.71 & 58.82 & Industrials \\ 
    \hline
 \hline
-\caption{Stock Ranking By Factors \label{tab1}} 
 \end{longtable}
 
 \begin{table}[H]
 \centering
+\caption{Stock Classification by Sector and Cluster \label{tab2}} 
 \begin{tabular}{rlrl}
   \hline
  & Ticker & Cluster & Sector \\ 
@@ -729,7 +751,6 @@ A\label{app1}}{Appendix A}}\label{appendix-a}}
   17 & WHL.JO &   4 & Consumer Services \\ 
    \hline
 \end{tabular}
-\caption{Stock Classification by Sector and Cluster \label{tab2}} 
 \end{table}
 
 \newpage
